@@ -1,393 +1,237 @@
-/* ===== RESET & BASE ===== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; overflow-x: hidden; color: #333; }
 
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: 'Inter', sans-serif;
-    background: #fefefe;
-    color: #333;
-    overflow-x: hidden;
-    line-height: 1.6;
-}
-
-/* ===== HERO LANDING PAGE (India → Mexico) ===== */
-.hero-landing {
+/* ========================================
+   LANDING PAGE - India to Mexico
+   ======================================== */
+.landing {
     min-height: 100vh;
-    position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 2rem 1.5rem;
+    position: relative;
     overflow: hidden;
-    /* Split background: Night (India/left) to Day (Mexico/right) */
+    /* Night (India left) to Day (Mexico right) */
     background: linear-gradient(
         to right,
-        #0f1b3d 0%,
-        #162854 20%,
-        #1e3a6e 35%,
-        #3a7bd5 50%,
-        #6db3f2 65%,
-        #87ceeb 80%,
-        #b5e3f5 100%
+        #1b2838 0%,
+        #1e3a5f 25%,
+        #2e6ea6 45%,
+        #5ba3d9 55%,
+        #87ceeb 75%,
+        #b6e3f4 100%
     );
 }
 
-/* Date stamp */
-.date-stamp {
-    position: absolute;
-    top: 1rem;
-    right: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    font-size: 0.65rem;
-    color: rgba(255,255,255,0.5);
-    font-weight: 300;
-}
-
-/* Stars on night side */
-.stars-container {
+/* Stars overlay on left side */
+.landing::before {
+    content: '✦ ✧ ★ ✦ ✧ ★ ✦ ✧ ✦ ✧ ★ ✦ ✧ ✦ ★ ✧ ✦ ✧ ★';
     position: absolute;
     top: 0;
     left: 0;
-    width: 50%;
+    width: 45%;
     height: 100%;
+    font-size: 0.6rem;
+    color: #ffd700;
+    word-spacing: 20px;
+    line-height: 3;
+    padding: 2rem;
+    opacity: 0.5;
     pointer-events: none;
     overflow: hidden;
+    letter-spacing: 15px;
 }
 
-.star {
-    position: absolute;
-    background: #ffd700;
-    border-radius: 50%;
-    animation: twinkle 2s ease-in-out infinite alternate;
+/* ===== TOP ROW ===== */
+.landing-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
 }
 
-@keyframes twinkle {
-    0% { opacity: 0.3; transform: scale(0.8); }
-    100% { opacity: 1; transform: scale(1.2); }
-}
-
-/* Clouds */
-.cloud {
-    position: absolute;
-    font-size: 4rem;
-    color: rgba(255,255,255,0.6);
-    animation: cloudDrift 20s ease-in-out infinite;
-}
-
-.cloud-1 { top: 15%; right: 10%; font-size: 3.5rem; animation-delay: 0s; }
-.cloud-2 { top: 25%; right: 25%; font-size: 2.5rem; animation-delay: -5s; }
-.cloud-3 { top: 60%; right: 5%; font-size: 3rem; animation-delay: -10s; opacity: 0.4; }
-.cloud-4 { top: 45%; left: 35%; font-size: 2rem; animation-delay: -7s; opacity: 0.3; }
-
-@keyframes cloudDrift {
-    0%, 100% { transform: translateX(0); }
-    50% { transform: translateX(15px); }
-}
-
-/* ===== INDIA SIDE (Left - Night) ===== */
-.side-india {
-    position: absolute;
-    left: 5%;
-    top: 50%;
-    transform: translateY(-50%);
+.land-india, .land-mexico {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
 }
 
-.kawaii-moon {
-    width: 100px;
-    height: 100px;
-    position: relative;
+.cute-moon, .cute-sun {
+    font-size: 4rem;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
 }
 
-.moon-body {
-    font-size: 5rem;
-    animation: moonFloat 4s ease-in-out infinite;
-    filter: drop-shadow(0 0 15px rgba(255,255,200,0.4));
+.cute-moon { animation: gentleFloat 3s ease-in-out infinite; }
+.cute-sun { animation: gentleFloat 3s ease-in-out infinite 1s; }
+
+@keyframes gentleFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
 }
 
-@keyframes moonFloat {
-    0%, 100% { transform: translateY(0) rotate(-5deg); }
-    50% { transform: translateY(-8px) rotate(5deg); }
-}
-
-.india-map {
-    width: 120px;
-    height: 150px;
-}
-
-.map-svg {
-    width: 100%;
-    height: 100%;
-    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2));
-}
-
-.love-text {
+.land-label {
     font-family: 'Dancing Script', cursive;
-    font-size: 1rem;
+    font-size: 0.85rem;
     color: rgba(255,255,255,0.85);
     text-align: center;
+    max-width: 120px;
 }
 
-.love-text-india {
-    color: #ffd700;
-    text-shadow: 0 0 10px rgba(255,215,0,0.3);
+/* ===== MIDDLE ROW ===== */
+.landing-middle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
 }
 
-/* ===== MEXICO SIDE (Right - Day) ===== */
-.side-mexico {
-    position: absolute;
-    right: 5%;
-    top: 50%;
-    transform: translateY(-50%);
+.map-india, .map-mexico {
+    font-size: 4rem;
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.15));
+}
+
+.flight-center {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
-}
-
-.kawaii-sun {
-    width: 110px;
-    height: 110px;
+    gap: 0.5rem;
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
-.sun-face {
-    width: 70px;
-    height: 70px;
-    background: radial-gradient(circle, #ffd93d, #f5b731);
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.flight-line {
+    width: 80px;
+    height: 2px;
+    border-top: 2px dashed rgba(255,255,255,0.5);
     position: relative;
-    z-index: 2;
-    box-shadow: 0 0 30px rgba(255,217,61,0.5);
-    animation: sunPulse 3s ease-in-out infinite;
 }
 
-@keyframes sunPulse {
-    0%, 100% { transform: scale(1); box-shadow: 0 0 30px rgba(255,217,61,0.5); }
-    50% { transform: scale(1.05); box-shadow: 0 0 45px rgba(255,217,61,0.7); }
-}
-
-.sun-eyes {
-    display: flex;
-    gap: 12px;
-    margin-top: 5px;
-}
-
-.sun-eye {
-    font-size: 0.5rem;
-    color: #333;
-}
-
-.sun-mouth {
-    font-size: 0.8rem;
-    margin-top: 2px;
-}
-
-.sun-blush {
+.flight-line::before, .flight-line::after {
+    content: '◯';
     position: absolute;
-    width: 12px;
-    height: 8px;
-    background: rgba(255,150,150,0.5);
-    border-radius: 50%;
-    top: 55%;
+    top: -8px;
+    font-size: 0.6rem;
+    color: rgba(255,255,255,0.5);
 }
 
-.blush-left { left: 12px; }
-.blush-right { right: 12px; }
+.flight-line::before { left: -5px; }
+.flight-line::after { right: -5px; }
 
-/* Sun rays */
-.sun-ray {
-    position: absolute;
-    width: 4px;
-    height: 16px;
-    background: #ffd93d;
-    border-radius: 3px;
-    top: 50%;
-    left: 50%;
-    transform-origin: 50% 50%;
-    animation: rayRotate 8s linear infinite;
+.flight-ticket {
+    font-size: 2rem;
+    animation: gentleFloat 4s ease-in-out infinite 0.5s;
 }
 
-.ray-1 { transform: translate(-50%, -50%) rotate(0deg) translateY(-48px); }
-.ray-2 { transform: translate(-50%, -50%) rotate(45deg) translateY(-48px); }
-.ray-3 { transform: translate(-50%, -50%) rotate(90deg) translateY(-48px); }
-.ray-4 { transform: translate(-50%, -50%) rotate(135deg) translateY(-48px); }
-.ray-5 { transform: translate(-50%, -50%) rotate(180deg) translateY(-48px); }
-.ray-6 { transform: translate(-50%, -50%) rotate(225deg) translateY(-48px); }
-.ray-7 { transform: translate(-50%, -50%) rotate(270deg) translateY(-48px); }
-.ray-8 { transform: translate(-50%, -50%) rotate(315deg) translateY(-48px); }
-
-@keyframes rayRotate {
-    from { transform: translate(-50%, -50%) rotate(var(--start, 0deg)) translateY(-48px); }
-    to { transform: translate(-50%, -50%) rotate(calc(var(--start, 0deg) + 360deg)) translateY(-48px); }
-}
-
-.mexico-map {
-    width: 140px;
-    height: 110px;
-}
-
-.love-text-mexico {
-    color: #2d5a27;
-    font-size: 1.1rem;
-    text-shadow: 0 1px 3px rgba(255,255,255,0.5);
-}
-
-/* ===== AIRPLANE PATH ===== */
-.airplane-path {
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 200px;
-    height: 120px;
-}
-
-.flight-svg {
-    width: 100%;
-    height: 100%;
-}
-
-.airplane-icon {
-    position: absolute;
-    top: 20%;
-    left: 45%;
-    font-size: 1.8rem;
-    color: #fff;
-    transform: rotate(-20deg);
-    animation: flyPlane 4s ease-in-out infinite;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-}
-
-@keyframes flyPlane {
-    0%, 100% { transform: rotate(-20deg) translate(0, 0); }
-    25% { transform: rotate(-10deg) translate(5px, -5px); }
-    50% { transform: rotate(-25deg) translate(-3px, 3px); }
-    75% { transform: rotate(-15deg) translate(3px, -2px); }
-}
-
-/* ===== NAVIGATION RIBBONS ===== */
-.nav-ribbons {
-    position: absolute;
-    bottom: 18%;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-    align-items: center;
-    z-index: 10;
-}
-
-.ribbon-btn {
+/* ===== NAV RIBBONS ===== */
+.nav-ribbon {
     font-family: 'Fredoka', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 600;
     color: #c9a84c;
     text-decoration: none;
-    padding: 0.5rem 2rem;
-    background: rgba(255,255,255,0.7);
-    border-radius: 4px;
-    position: relative;
+    padding: 0.5rem 2.5rem;
+    background: rgba(255,255,255,0.75);
+    border-radius: 2px;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    /* Brush stroke effect */
-    clip-path: polygon(2% 10%, 8% 0%, 95% 2%, 100% 15%, 98% 85%, 93% 100%, 5% 98%, 0% 88%);
+    display: inline-block;
+    position: relative;
+    transition: transform 0.2s ease, background 0.2s ease;
+    /* Rough brush stroke shape */
+    clip-path: polygon(1% 15%, 5% 0%, 96% 5%, 100% 20%, 99% 80%, 95% 100%, 4% 95%, 0% 80%);
 }
 
-.ribbon-btn:hover {
+.nav-ribbon:hover {
+    transform: scale(1.06);
     background: rgba(255,255,255,0.9);
-    transform: scale(1.05);
-    color: #b8942f;
 }
 
-.home-btn-wrapper {
-    position: absolute;
-    bottom: 5%;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
+.nav-small {
+    font-size: 0.9rem;
+    padding: 0.4rem 1.8rem;
 }
 
-.ribbon-home {
-    font-size: 0.85rem;
-    padding: 0.4rem 1.5rem;
+/* ===== BOTTOM ROW ===== */
+.landing-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-/* ===== STORY START SECTION ===== */
-.story-start {
-    min-height: 100vh;
-    background: linear-gradient(180deg, #e8734a 0%, #f4845f 30%, #f7a072 60%, #fcd5ce 100%);
+.bottom-left, .bottom-right {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 0.4rem;
+}
+
+.cute-sun-small, .cute-moon-small {
+    font-size: 3rem;
+}
+
+.cute-sun-small { animation: gentleFloat 3s ease-in-out infinite 0.5s; }
+.cute-moon-small { animation: gentleFloat 3s ease-in-out infinite 1.5s; }
+
+.nav-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* ========================================
+   STORY INTRO
+   ======================================== */
+.story-intro {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #e8734a 0%, #f4845f 30%, #f7a072 60%, #fcd5ce 100%);
+    display: flex;
+    align-items: center;
     justify-content: center;
-    position: relative;
     padding: 2rem;
     text-align: center;
     color: #fff;
 }
 
-.story-hero {
+.story-content {
     max-width: 500px;
-    animation: fadeInUp 1.5s ease;
+    animation: fadeUp 1.2s ease;
 }
 
-.hero-greeting {
+.greeting {
     font-size: 0.9rem;
     margin-bottom: 2rem;
     opacity: 0.9;
     font-weight: 300;
 }
 
-.hero-greeting em {
+.greeting em {
     font-family: 'Dancing Script', cursive;
     font-size: 1.1rem;
 }
 
-.hero-title {
+.main-title {
     font-family: 'Playfair Display', serif;
-    font-size: 2.8rem;
+    font-size: 2.6rem;
     font-weight: 700;
     line-height: 1.3;
     margin-bottom: 3rem;
 }
 
-.hero-title .highlight {
+.title-highlight {
     font-style: italic;
-    background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
-    padding: 0.2rem 0.5rem;
+    background: rgba(255,255,255,0.15);
+    padding: 0.2rem 0.6rem;
     border-radius: 8px;
 }
 
-.scroll-indicator {
+.scroll-hint {
     font-size: 0.8rem;
     opacity: 0.7;
-    animation: pulse 2s ease-in-out infinite;
 }
 
-.scroll-arrow {
+.arrow-down {
     font-size: 1.2rem;
     margin-top: 0.5rem;
     animation: bounce 2s ease-in-out infinite;
@@ -398,50 +242,28 @@ body {
     50% { transform: translateY(8px); }
 }
 
-@keyframes pulse {
-    0%, 100% { opacity: 0.7; }
-    50% { opacity: 1; }
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-/* ===== FLOATING HEARTS ===== */
-.floating-hearts {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-    overflow: hidden;
-}
-
-.floating-heart {
-    position: absolute;
-    font-size: 1.2rem;
-    opacity: 0.15;
-    animation: floatUp 8s ease-in infinite;
-}
-
-@keyframes floatUp {
-    0% {
-        transform: translateY(100vh) rotate(0deg);
-        opacity: 0;
-    }
-    10% { opacity: 0.15; }
-    90% { opacity: 0.15; }
-    100% {
-        transform: translateY(-100px) rotate(360deg);
-        opacity: 0;
-    }
-}
-
-/* ===== SECTIONS GENERAL ===== */
+/* ========================================
+   CONTENT SECTIONS
+   ======================================== */
 .section {
     padding: 5rem 2rem;
     max-width: 600px;
     margin: 0 auto;
-    position: relative;
-    z-index: 1;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section.visible { opacity: 1; transform: translateY(0); }
+
+.section-full {
+    padding: 5rem 2rem;
+    text-align: center;
 }
 
 .section-number {
@@ -470,18 +292,6 @@ body {
     font-weight: 300;
 }
 
-/* ===== SECTION: MEET ===== */
-.section-meet {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.section-meet.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
 .meet-names {
     display: flex;
     align-items: center;
@@ -493,22 +303,17 @@ body {
     color: #e8734a;
 }
 
-.name-arrow {
-    font-size: 1.2rem;
-    animation: pulse 2s ease-in-out infinite;
+.names-arrow { animation: pulse 2s ease-in-out infinite; }
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
 }
 
-/* ===== SECTION: DISTANCE ===== */
+/* Distance */
 .section-distance {
     background: linear-gradient(180deg, #fff 0%, #fff5f3 50%, #ffecd2 100%);
     padding: 6rem 2rem;
-    max-width: 100%;
-    text-align: center;
-}
-
-.distance-content {
-    max-width: 500px;
-    margin: 0 auto;
 }
 
 .distance-title {
@@ -517,30 +322,13 @@ body {
     font-weight: 400;
     color: #444;
     line-height: 1.5;
-}
-
-.highlight-pink {
-    color: #e8734a;
-    font-weight: 700;
-    font-size: 2.2rem;
-}
-
-/* ===== SECTION: SONG ===== */
-.section-song {
-    text-align: center;
-    padding: 5rem 2rem;
-    max-width: 600px;
+    max-width: 500px;
     margin: 0 auto;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.section-song.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
+.pink { color: #e8734a; font-weight: 700; font-size: 2.2rem; }
 
+/* Song */
 .song-title {
     font-family: 'Playfair Display', serif;
     font-size: 2rem;
@@ -548,10 +336,7 @@ body {
     color: #2d2d2d;
 }
 
-.song-title em {
-    font-style: italic;
-    color: #e8734a;
-}
+.song-title em { color: #e8734a; }
 
 .song-text {
     font-size: 0.9rem;
@@ -561,10 +346,10 @@ body {
     font-weight: 300;
 }
 
-.song-player {
+.song-cards {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.8rem;
     margin-bottom: 2rem;
 }
 
@@ -575,33 +360,12 @@ body {
     background: linear-gradient(135deg, #fff5f3, #ffecd2);
     padding: 1rem 1.5rem;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(232, 115, 74, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(232,115,74,0.1);
 }
 
-.song-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(232, 115, 74, 0.2);
-}
+.song-icon { font-size: 1.3rem; color: #e8734a; }
 
-.song-icon {
-    font-size: 1.5rem;
-    color: #e8734a;
-    width: 40px;
-    height: 40px;
-    background: rgba(232, 115, 74, 0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.song-info {
-    font-weight: 500;
-    color: #333;
-}
-
-.song-waveform {
+.waveform {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -610,64 +374,43 @@ body {
     margin-bottom: 1.5rem;
 }
 
-.wave-bar {
+.waveform span {
     width: 3px;
     background: linear-gradient(180deg, #e8734a, #f7a072);
     border-radius: 3px;
-    animation: waveAnim 1.2s ease-in-out infinite;
+    animation: wave 1.2s ease-in-out infinite;
 }
 
-.wave-bar:nth-child(1) { height: 10px; animation-delay: 0s; }
-.wave-bar:nth-child(2) { height: 20px; animation-delay: 0.1s; }
-.wave-bar:nth-child(3) { height: 30px; animation-delay: 0.2s; }
-.wave-bar:nth-child(4) { height: 15px; animation-delay: 0.3s; }
-.wave-bar:nth-child(5) { height: 25px; animation-delay: 0.4s; }
-.wave-bar:nth-child(6) { height: 35px; animation-delay: 0.5s; }
-.wave-bar:nth-child(7) { height: 20px; animation-delay: 0.6s; }
-.wave-bar:nth-child(8) { height: 30px; animation-delay: 0.7s; }
-.wave-bar:nth-child(9) { height: 12px; animation-delay: 0.8s; }
-.wave-bar:nth-child(10) { height: 22px; animation-delay: 0.9s; }
-.wave-bar:nth-child(11) { height: 28px; animation-delay: 1s; }
-.wave-bar:nth-child(12) { height: 18px; animation-delay: 0.15s; }
-.wave-bar:nth-child(13) { height: 32px; animation-delay: 0.25s; }
-.wave-bar:nth-child(14) { height: 14px; animation-delay: 0.35s; }
-.wave-bar:nth-child(15) { height: 24px; animation-delay: 0.45s; }
-.wave-bar:nth-child(16) { height: 16px; animation-delay: 0.55s; }
-.wave-bar:nth-child(17) { height: 26px; animation-delay: 0.65s; }
-.wave-bar:nth-child(18) { height: 20px; animation-delay: 0.75s; }
-.wave-bar:nth-child(19) { height: 30px; animation-delay: 0.85s; }
-.wave-bar:nth-child(20) { height: 10px; animation-delay: 0.95s; }
+.waveform span:nth-child(1) { height: 12px; animation-delay: 0s; }
+.waveform span:nth-child(2) { height: 22px; animation-delay: 0.08s; }
+.waveform span:nth-child(3) { height: 30px; animation-delay: 0.16s; }
+.waveform span:nth-child(4) { height: 16px; animation-delay: 0.24s; }
+.waveform span:nth-child(5) { height: 26px; animation-delay: 0.32s; }
+.waveform span:nth-child(6) { height: 34px; animation-delay: 0.4s; }
+.waveform span:nth-child(7) { height: 18px; animation-delay: 0.48s; }
+.waveform span:nth-child(8) { height: 28px; animation-delay: 0.56s; }
+.waveform span:nth-child(9) { height: 14px; animation-delay: 0.64s; }
+.waveform span:nth-child(10) { height: 24px; animation-delay: 0.72s; }
+.waveform span:nth-child(11) { height: 32px; animation-delay: 0.8s; }
+.waveform span:nth-child(12) { height: 20px; animation-delay: 0.88s; }
+.waveform span:nth-child(13) { height: 30px; animation-delay: 0.96s; }
+.waveform span:nth-child(14) { height: 15px; animation-delay: 1.04s; }
+.waveform span:nth-child(15) { height: 25px; animation-delay: 1.12s; }
 
-@keyframes waveAnim {
+@keyframes wave {
     0%, 100% { transform: scaleY(1); }
-    50% { transform: scaleY(0.5); }
+    50% { transform: scaleY(0.4); }
 }
 
 .song-quote {
     font-family: 'Dancing Script', cursive;
     font-size: 1.1rem;
     color: #e8734a;
-    font-style: italic;
 }
 
-/* ===== SECTION: OCEAN ===== */
-.section-ocean {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.section-ocean.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* ===== SECTION: MOMENTS ===== */
+/* Moments */
 .section-moments {
-    text-align: center;
     background: linear-gradient(180deg, #fff 0%, #f0fffe 50%, #e0f7fa 100%);
-    padding: 5rem 2rem;
-    max-width: 100%;
 }
 
 .moments-title {
@@ -677,16 +420,8 @@ body {
     margin-bottom: 3rem;
 }
 
-.moments-title .saved {
-    color: #e8734a;
-    text-decoration: underline;
-    text-decoration-color: #f7a072;
-}
-
-.moments-title em {
-    font-family: 'Dancing Script', cursive;
-    font-size: 2rem;
-}
+.moments-title .saved { color: #e8734a; text-decoration: underline; }
+.moments-title em { font-family: 'Dancing Script', cursive; font-size: 2rem; }
 
 .moments-grid {
     display: flex;
@@ -697,49 +432,28 @@ body {
     margin: 0 auto;
 }
 
-.moment-card {
-    width: 100%;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
+.moment-card { width: 100%; }
 
-.moment-card.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.moment-placeholder {
+.moment-img {
     width: 100%;
     height: 200px;
     border-radius: 16px;
     margin-bottom: 0.8rem;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 
-.gradient-1 { background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); }
-.gradient-2 { background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%); }
-.gradient-3 { background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%); }
+.grad-1 { background: linear-gradient(135deg, #ffecd2, #fcb69f); }
+.grad-2 { background: linear-gradient(135deg, #a1c4fd, #c2e9fb); }
+.grad-3 { background: linear-gradient(135deg, #fbc2eb, #a6c1ee); }
 
-.moment-caption {
+.moment-cap {
     font-family: 'Dancing Script', cursive;
     font-size: 1.1rem;
     color: #666;
 }
 
-/* ===== SECTION: THINGS ===== */
-.section-things {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.section-things.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.things-note {
+/* Things */
+.note-box {
     margin-top: 2rem;
     padding: 1.5rem;
     background: linear-gradient(135deg, #fff5f3, #ffecd2);
@@ -747,30 +461,20 @@ body {
     border-left: 4px solid #e8734a;
 }
 
-.things-note p {
-    font-size: 0.9rem;
-    color: #888;
-    font-style: italic;
-}
+.note-box p { font-size: 0.9rem; color: #888; font-style: italic; }
 
-/* ===== SECTION: LETTER ===== */
-.section-letter {
-    text-align: center;
-    padding: 5rem 2rem;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.letter-label {
+/* Letter */
+.letter-heading {
     font-family: 'Dancing Script', cursive;
     font-size: 1.3rem;
     color: #e8734a;
     margin-bottom: 2rem;
+    text-align: center;
 }
 
 .envelope {
-    width: 250px;
-    height: 160px;
+    width: 240px;
+    height: 150px;
     margin: 0 auto 2rem;
     position: relative;
     cursor: pointer;
@@ -779,7 +483,7 @@ body {
 
 .envelope:hover { transform: scale(1.05); }
 
-.envelope-body {
+.env-body {
     width: 100%;
     height: 100%;
     background: linear-gradient(145deg, #ffecd2, #fcb69f);
@@ -787,69 +491,45 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 8px 25px rgba(232, 115, 74, 0.2);
-    position: relative;
-    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(232,115,74,0.2);
 }
 
-.envelope-body::before {
-    content: '';
+.env-flap {
     position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 0;
-    border-left: 125px solid transparent;
-    border-right: 125px solid transparent;
-    border-top: 80px solid #f7a072;
-    opacity: 0.5;
-}
-
-.envelope-flap {
-    position: absolute;
-    top: 0;
-    left: 0;
+    top: 0; left: 0;
     width: 100%;
-    height: 80px;
+    height: 75px;
     background: linear-gradient(180deg, #f4845f, #f7a072);
     clip-path: polygon(0 0, 50% 100%, 100% 0);
-    border-radius: 12px 12px 0 0;
-    transition: transform 0.6s ease;
+    transition: transform 0.5s ease;
     transform-origin: top center;
     z-index: 2;
 }
 
-.envelope.opened .envelope-flap {
-    transform: rotateX(180deg);
-}
+.envelope.opened .env-flap { transform: rotateX(180deg); }
 
-.tap-text {
+.tap-label {
     font-family: 'Dancing Script', cursive;
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: #e8734a;
-    z-index: 1;
 }
 
-.letter-content {
+.letter-reveal {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.8s ease, opacity 0.8s ease;
+    transition: max-height 0.8s ease, opacity 0.6s ease;
     opacity: 0;
 }
 
-.letter-content.open {
-    max-height: 500px;
-    opacity: 1;
-}
+.letter-reveal.open { max-height: 400px; opacity: 1; }
 
 .letter-paper {
     background: #fffef9;
     border: 1px solid #f0e6d3;
     border-radius: 12px;
     padding: 2rem;
-    margin-top: 1.5rem;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    margin-top: 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     text-align: left;
 }
 
@@ -861,42 +541,26 @@ body {
     font-weight: 300;
 }
 
-.letter-paper em {
-    font-family: 'Dancing Script', cursive;
-    font-size: 1.2rem;
-    color: #e8734a;
-}
+.letter-paper em { font-family: 'Dancing Script', cursive; font-size: 1.2rem; color: #e8734a; }
 
-/* ===== SECTION: PROPOSAL ===== */
+/* Proposal */
 .section-proposal {
-    text-align: center;
-    padding: 6rem 2rem;
-    max-width: 100%;
     background: linear-gradient(180deg, #fff 0%, #fff5f3 30%, #ffecd2 60%, #fcb69f 100%);
-    position: relative;
+    padding: 6rem 2rem;
 }
 
-.proposal-pretext {
-    font-size: 0.9rem;
-    color: #888;
-    margin-bottom: 1rem;
-}
+.pre-question { font-size: 0.9rem; color: #888; margin-bottom: 1rem; }
+.pre-question em { font-family: 'Dancing Script', cursive; color: #e8734a; }
 
-.proposal-pretext em {
-    font-family: 'Dancing Script', cursive;
-    color: #e8734a;
-}
-
-.proposal-question {
+.big-question {
     font-family: 'Playfair Display', serif;
     font-size: 2.5rem;
     color: #2d2d2d;
     margin-bottom: 3rem;
     line-height: 1.3;
-    animation: fadeInUp 1s ease;
 }
 
-.proposal-btn {
+.yes-btn {
     font-family: 'Inter', sans-serif;
     font-size: 1.1rem;
     font-weight: 600;
@@ -906,132 +570,57 @@ body {
     border: none;
     border-radius: 50px;
     cursor: pointer;
+    box-shadow: 0 8px 25px rgba(232,115,74,0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 8px 25px rgba(232, 115, 74, 0.3);
 }
 
-.proposal-btn:hover {
+.yes-btn:hover {
     transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 12px 35px rgba(232, 115, 74, 0.4);
+    box-shadow: 0 12px 35px rgba(232,115,74,0.4);
 }
 
-.proposal-btn:active {
-    transform: translateY(0) scale(0.98);
-}
-
-.celebration {
+.confetti-box {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     pointer-events: none;
     z-index: 1000;
 }
 
-.confetti {
+.confetti-piece {
     position: absolute;
-    width: 10px;
-    height: 10px;
+    width: 10px; height: 10px;
     border-radius: 2px;
-    animation: confettiFall 3s ease-out forwards;
+    animation: fall 3s ease-out forwards;
 }
 
-@keyframes confettiFall {
-    0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+@keyframes fall {
+    0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
     100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
 }
 
-/* ===== FOOTER ===== */
-.footer {
+/* Footer */
+.site-footer {
     text-align: center;
     padding: 3rem 2rem;
     background: #2d2d2d;
     color: #fff;
 }
 
-.footer p { font-size: 0.9rem; opacity: 0.8; }
+.site-footer p { font-size: 0.9rem; opacity: 0.8; }
+.site-footer em { font-family: 'Dancing Script', cursive; font-size: 1.1rem; color: #f7a072; }
 
-.footer em {
-    font-family: 'Dancing Script', cursive;
-    font-size: 1.1rem;
-    color: #f7a072;
-}
-
-/* ===== ANIMATIONS ===== */
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-    .hero-title { font-size: 2.2rem; }
-    .section-title { font-size: 1.6rem; }
-    .proposal-question { font-size: 2rem; }
-    .distance-title { font-size: 1.5rem; }
-    .highlight-pink { font-size: 1.8rem; }
-    
-    .side-india { left: 2%; }
-    .side-mexico { right: 2%; }
-    .kawaii-sun { width: 80px; height: 80px; }
-    .sun-face { width: 55px; height: 55px; }
-    .sun-ray { height: 12px; }
-    .ray-1 { transform: translate(-50%, -50%) rotate(0deg) translateY(-38px); }
-    .ray-2 { transform: translate(-50%, -50%) rotate(45deg) translateY(-38px); }
-    .ray-3 { transform: translate(-50%, -50%) rotate(90deg) translateY(-38px); }
-    .ray-4 { transform: translate(-50%, -50%) rotate(135deg) translateY(-38px); }
-    .ray-5 { transform: translate(-50%, -50%) rotate(180deg) translateY(-38px); }
-    .ray-6 { transform: translate(-50%, -50%) rotate(225deg) translateY(-38px); }
-    .ray-7 { transform: translate(-50%, -50%) rotate(270deg) translateY(-38px); }
-    .ray-8 { transform: translate(-50%, -50%) rotate(315deg) translateY(-38px); }
-    .moon-body { font-size: 3.5rem; }
-    .india-map { width: 80px; height: 100px; }
-    .mexico-map { width: 100px; height: 80px; }
-    .love-text { font-size: 0.8rem; }
-    .airplane-path { width: 120px; height: 80px; }
-    .airplane-icon { font-size: 1.3rem; }
-    .nav-ribbons { bottom: 12%; }
-    .ribbon-btn { font-size: 0.9rem; padding: 0.4rem 1.5rem; }
-}
-
+/* ========================================
+   RESPONSIVE
+   ======================================== */
 @media (max-width: 480px) {
-    .hero-title { font-size: 1.8rem; }
-    .section { padding: 4rem 1.5rem; }
-    .section-number { font-size: 3rem; }
-    .proposal-question { font-size: 1.6rem; }
-    .envelope { width: 200px; height: 130px; }
-    .envelope-body::before {
-        border-left: 100px solid transparent;
-        border-right: 100px solid transparent;
-        border-top: 65px solid #f7a072;
-    }
-    .envelope-flap { height: 65px; }
-    
-    .side-india { left: 1%; }
-    .side-mexico { right: 1%; }
-    .kawaii-sun { width: 60px; height: 60px; }
-    .sun-face { width: 42px; height: 42px; }
-    .sun-ray { height: 10px; }
-    .ray-1 { transform: translate(-50%, -50%) rotate(0deg) translateY(-30px); }
-    .ray-2 { transform: translate(-50%, -50%) rotate(45deg) translateY(-30px); }
-    .ray-3 { transform: translate(-50%, -50%) rotate(90deg) translateY(-30px); }
-    .ray-4 { transform: translate(-50%, -50%) rotate(135deg) translateY(-30px); }
-    .ray-5 { transform: translate(-50%, -50%) rotate(180deg) translateY(-30px); }
-    .ray-6 { transform: translate(-50%, -50%) rotate(225deg) translateY(-30px); }
-    .ray-7 { transform: translate(-50%, -50%) rotate(270deg) translateY(-30px); }
-    .ray-8 { transform: translate(-50%, -50%) rotate(315deg) translateY(-30px); }
-    .moon-body { font-size: 2.5rem; }
-    .india-map { width: 60px; height: 75px; }
-    .mexico-map { width: 75px; height: 60px; }
-    .love-text { font-size: 0.7rem; }
-    .airplane-path { width: 80px; height: 60px; top: 30%; }
-    .airplane-icon { font-size: 1rem; }
-    .nav-ribbons { bottom: 8%; gap: 0.4rem; }
-    .ribbon-btn { font-size: 0.75rem; padding: 0.35rem 1.2rem; letter-spacing: 1px; }
+    .cute-moon, .cute-sun { font-size: 3rem; }
+    .cute-sun-small, .cute-moon-small { font-size: 2.2rem; }
+    .map-india, .map-mexico { font-size: 3rem; }
+    .nav-ribbon { font-size: 1rem; padding: 0.4rem 1.8rem; letter-spacing: 2px; }
+    .nav-small { font-size: 0.75rem; padding: 0.3rem 1.2rem; }
+    .main-title { font-size: 2rem; }
+    .big-question { font-size: 2rem; }
+    .flight-ticket { font-size: 1.5rem; }
+    .land-label { font-size: 0.7rem; }
 }

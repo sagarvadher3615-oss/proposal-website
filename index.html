@@ -6,114 +6,68 @@
     <title>Saga :: M. Amor</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@400;700&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Dancing+Script:wght@400;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- ===== HERO / LANDING PAGE ===== -->
-    <section class="hero-landing" id="heroLanding">
-        <!-- Date stamp -->
-        <div class="date-stamp">
-            <span>Created: 16/07/2026</span>
-            <span>Last Updated: 12/08/26</span>
+
+    <!-- ===== LANDING PAGE ===== -->
+    <section class="landing" id="landing">
+        <!-- Top Row: Moon + START + Sun -->
+        <div class="landing-top">
+            <div class="land-india">
+                <div class="cute-moon">🌙</div>
+                <p class="land-label">Hu tane prem karu chhu</p>
+            </div>
+            <a href="#story" class="nav-ribbon">START</a>
+            <div class="land-mexico">
+                <div class="cute-sun">🌞</div>
+                <p class="land-label">Te amo</p>
+            </div>
         </div>
 
-        <!-- Stars (night side) -->
-        <div class="stars-container" id="starsContainer"></div>
-
-        <!-- Clouds -->
-        <div class="cloud cloud-1">&#9729;</div>
-        <div class="cloud cloud-2">&#9729;</div>
-        <div class="cloud cloud-3">&#9729;</div>
-        <div class="cloud cloud-4">&#9729;</div>
-
-        <!-- India Side (Left - Night) -->
-        <div class="side-india">
-            <div class="kawaii-moon">
-                <div class="moon-face">
-                    <div class="moon-body">&#127769;</div>
-                </div>
+        <!-- Middle: Maps + Flight -->
+        <div class="landing-middle">
+            <div class="map-india">🇮🇳</div>
+            <div class="flight-center">
+                <div class="flight-line"></div>
+                <div class="flight-ticket">✈️🎫</div>
             </div>
-            <div class="india-map">
-                <svg viewBox="0 0 200 240" class="map-svg map-india-svg">
-                    <path d="M100,10 C85,10 70,15 60,25 C50,35 45,50 42,65 C38,80 35,95 38,110 C40,120 45,130 42,140 C39,150 35,160 38,170 C42,185 50,195 60,205 C70,215 80,225 95,230 C105,235 115,230 125,220 C135,210 142,195 148,180 C155,165 160,150 158,135 C155,120 150,105 148,90 C145,75 140,60 132,48 C125,35 115,25 105,18 C103,12 101,10 100,10Z" 
-                    fill="rgba(255,220,150,0.6)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-                </svg>
-            </div>
-            <p class="love-text love-text-india">Hu tane prem karu chhu</p>
+            <div class="map-mexico">🇲🇽</div>
         </div>
 
-        <!-- Airplane Path (Center) -->
-        <div class="airplane-path">
-            <svg class="flight-svg" viewBox="0 0 200 120">
-                <path d="M10,90 C40,85 60,40 100,35 C140,30 160,75 190,70" 
-                      fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-dasharray="8,6"/>
-                <circle cx="10" cy="90" r="3" fill="rgba(255,255,255,0.4)"/>
-                <circle cx="50" cy="55" r="2" fill="rgba(255,255,255,0.3)"/>
-                <circle cx="150" cy="55" r="2" fill="rgba(255,255,255,0.3)"/>
-                <circle cx="190" cy="70" r="3" fill="rgba(255,255,255,0.4)"/>
-            </svg>
-            <div class="airplane-icon">&#9992;</div>
-        </div>
-
-        <!-- Mexico Side (Right - Day) -->
-        <div class="side-mexico">
-            <div class="kawaii-sun">
-                <div class="sun-ray ray-1"></div>
-                <div class="sun-ray ray-2"></div>
-                <div class="sun-ray ray-3"></div>
-                <div class="sun-ray ray-4"></div>
-                <div class="sun-ray ray-5"></div>
-                <div class="sun-ray ray-6"></div>
-                <div class="sun-ray ray-7"></div>
-                <div class="sun-ray ray-8"></div>
-                <div class="sun-face">
-                    <div class="sun-eyes">
-                        <span class="sun-eye">&#9679;</span>
-                        <span class="sun-eye">&#9679;</span>
-                    </div>
-                    <div class="sun-mouth">&#8�;</div>
-                    <div class="sun-blush blush-left"></div>
-                    <div class="sun-blush blush-right"></div>
-                </div>
+        <!-- Bottom: Navigation -->
+        <div class="landing-bottom">
+            <div class="bottom-left">
+                <div class="cute-sun-small">🌞</div>
+                <p class="land-label">Te amo</p>
             </div>
-            <div class="mexico-map">
-                <svg viewBox="0 0 220 180" class="map-svg map-mexico-svg">
-                    <path d="M30,50 C40,40 60,35 80,30 C100,25 130,28 155,35 C175,40 190,50 195,65 C200,80 195,95 185,105 C175,115 160,120 145,130 C130,140 115,155 100,160 C85,155 70,145 60,135 C50,125 40,115 35,100 C30,85 25,70 30,50Z"
-                    fill="rgba(150,220,130,0.5)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-                </svg>
+            <div class="nav-stack">
+                <a href="#sectionMeet" class="nav-ribbon">STORY</a>
+                <a href="#sectionSong" class="nav-ribbon">SONGS</a>
+                <a href="#sectionLetter" class="nav-ribbon">LETTERS</a>
+                <a href="#sectionProposal" class="nav-ribbon">EXTRA</a>
+                <a href="#landing" class="nav-ribbon nav-small">HOME</a>
             </div>
-            <p class="love-text love-text-mexico">Te amo</p>
-        </div>
-
-        <!-- Navigation Ribbons -->
-        <nav class="nav-ribbons">
-            <a href="#story" class="ribbon-btn">START</a>
-            <a href="#sectionMeet" class="ribbon-btn">STORY</a>
-            <a href="#sectionSong" class="ribbon-btn">SONGS</a>
-            <a href="#sectionLetter" class="ribbon-btn">LETTERS</a>
-            <a href="#sectionProposal" class="ribbon-btn">EXTRA</a>
-        </nav>
-
-        <!-- Home button bottom -->
-        <div class="home-btn-wrapper">
-            <a href="#heroLanding" class="ribbon-btn ribbon-home">HOME</a>
+            <div class="bottom-right">
+                <div class="cute-moon-small">🌙</div>
+                <p class="land-label">Hu tane prem karu chhu</p>
+            </div>
         </div>
     </section>
 
-    <!-- ===== STORY START ===== -->
-    <section class="story-start" id="story">
-        <div class="floating-hearts" id="floatingHearts"></div>
-        <div class="story-hero">
-            <p class="hero-greeting">from <em>Jodu</em>, with love to my <em>M. Amor</em> &hearts;</p>
-            <h1 class="hero-title">
+    <!-- ===== STORY INTRO ===== -->
+    <section class="story-intro" id="story">
+        <div class="story-content">
+            <p class="greeting">from <em>Jodu</em>, with love to my <em>M. Amor</em> ♥</p>
+            <h1 class="main-title">
                 Hola,<br>
                 there's something<br>
-                <span class="highlight">I've kept in my<br>heart...</span>
+                <span class="title-highlight">I've kept in my<br>heart...</span>
             </h1>
-            <div class="scroll-indicator">
+            <div class="scroll-hint">
                 <span>scroll gently</span>
-                <div class="scroll-arrow">&darr;</div>
+                <div class="arrow-down">↓</div>
             </div>
         </div>
     </section>
@@ -134,17 +88,15 @@
             may isip.
         </p>
         <div class="meet-names">
-            <span class="name-left">Ahmar</span>
-            <span class="name-arrow">&harr;</span>
-            <span class="name-right">Jodu</span>
+            <span>Ahmar</span>
+            <span class="names-arrow">↔</span>
+            <span>Jodu</span>
         </div>
     </section>
 
     <!-- Distance Section -->
-    <section class="section section-distance">
-        <div class="distance-content">
-            <h2 class="distance-title">Distance means so little<br>when someone means so<br><span class="highlight-pink">much.</span></h2>
-        </div>
+    <section class="section-full section-distance">
+        <h2 class="distance-title">Distance means so little<br>when someone means so<br><span class="pink">much.</span></h2>
     </section>
 
     <!-- Song Section -->
@@ -155,41 +107,20 @@
             played on repeat, tattooed in heartbeats — a<br>
             melody so familiar it replaced my own heartbeat.
         </p>
-        <div class="song-player">
+        <div class="song-cards">
             <div class="song-card">
-                <div class="song-icon">&#9835;</div>
-                <div class="song-info">
-                    <span class="song-name">Chi Song</span>
-                </div>
+                <span class="song-icon">♫</span>
+                <span>Chi Song</span>
             </div>
             <div class="song-card">
-                <div class="song-icon">&#9835;</div>
-                <div class="song-info">
-                    <span class="song-name">Headband</span>
-                </div>
+                <span class="song-icon">♫</span>
+                <span>Headband</span>
             </div>
         </div>
-        <div class="song-waveform">
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
+        <div class="waveform">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
         </div>
         <p class="song-quote">para sayo ang kanta na 'to, alam mo yun, di ba</p>
     </section>
@@ -210,50 +141,50 @@
         </p>
     </section>
 
-    <!-- Little Moments Section -->
-    <section class="section section-moments">
+    <!-- Moments -->
+    <section class="section-full section-moments">
         <h2 class="moments-title">little moments, <span class="saved">saved</span><br><em>forever</em></h2>
         <div class="moments-grid">
             <div class="moment-card">
-                <div class="moment-placeholder gradient-1"></div>
-                <p class="moment-caption"><em>the first goodnight</em></p>
+                <div class="moment-img grad-1"></div>
+                <p class="moment-cap"><em>the first goodnight</em></p>
             </div>
             <div class="moment-card">
-                <div class="moment-placeholder gradient-2"></div>
-                <p class="moment-caption"><em>your sunrise, my sunset</em></p>
+                <div class="moment-img grad-2"></div>
+                <p class="moment-cap"><em>your sunrise, my sunset</em></p>
             </div>
             <div class="moment-card">
-                <div class="moment-placeholder gradient-3"></div>
-                <p class="moment-caption"><em>hi, dimadey</em></p>
+                <div class="moment-img grad-3"></div>
+                <p class="moment-cap"><em>hi, dimadey</em></p>
             </div>
         </div>
     </section>
 
-    <!-- Section 04: Little Things -->
+    <!-- Little Things -->
     <section class="section section-things">
         <div class="section-number">04</div>
         <h2 class="section-title">The little things</h2>
         <p class="section-text">
             The way you type what you're thinking. Your<br>
             weird typos, mga random rants about the day. I<br>
-            started paying attention to the tiniest &mdash; I memorize<br>
+            started paying attention to the tiniest — I memorize<br>
             the littlest details I know about you.
         </p>
-        <div class="things-note">
+        <div class="note-box">
             <p><em>not a Pinterest man I know I said</em></p>
         </div>
     </section>
 
-    <!-- Letter Section -->
+    <!-- Letter -->
     <section class="section section-letter" id="sectionLetter">
-        <h3 class="letter-label">a gift &amp; a letter</h3>
+        <h3 class="letter-heading">a gift & a letter</h3>
         <div class="envelope" id="envelope">
-            <div class="envelope-flap"></div>
-            <div class="envelope-body">
-                <p class="tap-text">tap to open</p>
+            <div class="env-flap"></div>
+            <div class="env-body">
+                <p class="tap-label">tap to open</p>
             </div>
         </div>
-        <div class="letter-content" id="letterContent">
+        <div class="letter-reveal" id="letterReveal">
             <div class="letter-paper">
                 <p>My dearest M. Amor,</p>
                 <p>Every moment with you feels like a dream I never want to wake up from. You've shown me that love knows no distance, no timezone, no boundary.</p>
@@ -263,17 +194,17 @@
         </div>
     </section>
 
-    <!-- Proposal Section -->
-    <section class="section section-proposal" id="sectionProposal">
-        <p class="proposal-pretext">will you be mine, <em>forever?</em></p>
-        <h2 class="proposal-question">Will you be mine<br>&mdash; forever?</h2>
-        <button class="proposal-btn" id="proposalBtn">Yes, always &#128155;</button>
-        <div class="celebration" id="celebration"></div>
+    <!-- Proposal -->
+    <section class="section-full section-proposal" id="sectionProposal">
+        <p class="pre-question">will you be mine, <em>forever?</em></p>
+        <h2 class="big-question">Will you be mine<br>— forever?</h2>
+        <button class="yes-btn" id="yesBtn">Yes, always 💛</button>
+        <div class="confetti-box" id="confettiBox"></div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <p>from <em>Jodu</em>, with all of my heart &#10084;</p>
+    <footer class="site-footer">
+        <p>from <em>Jodu</em>, with all of my heart ❤</p>
     </footer>
 
     <script src="script.js"></script>
