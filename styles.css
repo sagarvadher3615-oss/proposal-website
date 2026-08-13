@@ -17,46 +17,328 @@ body {
     line-height: 1.6;
 }
 
-/* ===== FLOATING HEARTS ===== */
-.floating-hearts {
-    position: fixed;
+/* ===== HERO LANDING PAGE (India → Mexico) ===== */
+.hero-landing {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    /* Split background: Night (India/left) to Day (Mexico/right) */
+    background: linear-gradient(
+        to right,
+        #0f1b3d 0%,
+        #162854 20%,
+        #1e3a6e 35%,
+        #3a7bd5 50%,
+        #6db3f2 65%,
+        #87ceeb 80%,
+        #b5e3f5 100%
+    );
+}
+
+/* Date stamp */
+.date-stamp {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+}
+
+/* Stars on night side */
+.stars-container {
+    position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 50%;
     height: 100%;
     pointer-events: none;
-    z-index: 0;
     overflow: hidden;
 }
 
-.floating-heart {
+.star {
     position: absolute;
-    font-size: 1.2rem;
-    opacity: 0.15;
-    animation: floatUp 8s ease-in infinite;
+    background: #ffd700;
+    border-radius: 50%;
+    animation: twinkle 2s ease-in-out infinite alternate;
 }
 
-@keyframes floatUp {
-    0% {
-        transform: translateY(100vh) rotate(0deg);
-        opacity: 0;
-    }
-    10% {
-        opacity: 0.15;
-    }
-    90% {
-        opacity: 0.15;
-    }
-    100% {
-        transform: translateY(-100px) rotate(360deg);
-        opacity: 0;
-    }
+@keyframes twinkle {
+    0% { opacity: 0.3; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1.2); }
 }
 
-/* ===== HERO SECTION ===== */
-.hero {
+/* Clouds */
+.cloud {
+    position: absolute;
+    font-size: 4rem;
+    color: rgba(255,255,255,0.6);
+    animation: cloudDrift 20s ease-in-out infinite;
+}
+
+.cloud-1 { top: 15%; right: 10%; font-size: 3.5rem; animation-delay: 0s; }
+.cloud-2 { top: 25%; right: 25%; font-size: 2.5rem; animation-delay: -5s; }
+.cloud-3 { top: 60%; right: 5%; font-size: 3rem; animation-delay: -10s; opacity: 0.4; }
+.cloud-4 { top: 45%; left: 35%; font-size: 2rem; animation-delay: -7s; opacity: 0.3; }
+
+@keyframes cloudDrift {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(15px); }
+}
+
+/* ===== INDIA SIDE (Left - Night) ===== */
+.side-india {
+    position: absolute;
+    left: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.kawaii-moon {
+    width: 100px;
+    height: 100px;
+    position: relative;
+}
+
+.moon-body {
+    font-size: 5rem;
+    animation: moonFloat 4s ease-in-out infinite;
+    filter: drop-shadow(0 0 15px rgba(255,255,200,0.4));
+}
+
+@keyframes moonFloat {
+    0%, 100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-8px) rotate(5deg); }
+}
+
+.india-map {
+    width: 120px;
+    height: 150px;
+}
+
+.map-svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2));
+}
+
+.love-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1rem;
+    color: rgba(255,255,255,0.85);
+    text-align: center;
+}
+
+.love-text-india {
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255,215,0,0.3);
+}
+
+/* ===== MEXICO SIDE (Right - Day) ===== */
+.side-mexico {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.kawaii-sun {
+    width: 110px;
+    height: 110px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sun-face {
+    width: 70px;
+    height: 70px;
+    background: radial-gradient(circle, #ffd93d, #f5b731);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 0 30px rgba(255,217,61,0.5);
+    animation: sunPulse 3s ease-in-out infinite;
+}
+
+@keyframes sunPulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 30px rgba(255,217,61,0.5); }
+    50% { transform: scale(1.05); box-shadow: 0 0 45px rgba(255,217,61,0.7); }
+}
+
+.sun-eyes {
+    display: flex;
+    gap: 12px;
+    margin-top: 5px;
+}
+
+.sun-eye {
+    font-size: 0.5rem;
+    color: #333;
+}
+
+.sun-mouth {
+    font-size: 0.8rem;
+    margin-top: 2px;
+}
+
+.sun-blush {
+    position: absolute;
+    width: 12px;
+    height: 8px;
+    background: rgba(255,150,150,0.5);
+    border-radius: 50%;
+    top: 55%;
+}
+
+.blush-left { left: 12px; }
+.blush-right { right: 12px; }
+
+/* Sun rays */
+.sun-ray {
+    position: absolute;
+    width: 4px;
+    height: 16px;
+    background: #ffd93d;
+    border-radius: 3px;
+    top: 50%;
+    left: 50%;
+    transform-origin: 50% 50%;
+    animation: rayRotate 8s linear infinite;
+}
+
+.ray-1 { transform: translate(-50%, -50%) rotate(0deg) translateY(-48px); }
+.ray-2 { transform: translate(-50%, -50%) rotate(45deg) translateY(-48px); }
+.ray-3 { transform: translate(-50%, -50%) rotate(90deg) translateY(-48px); }
+.ray-4 { transform: translate(-50%, -50%) rotate(135deg) translateY(-48px); }
+.ray-5 { transform: translate(-50%, -50%) rotate(180deg) translateY(-48px); }
+.ray-6 { transform: translate(-50%, -50%) rotate(225deg) translateY(-48px); }
+.ray-7 { transform: translate(-50%, -50%) rotate(270deg) translateY(-48px); }
+.ray-8 { transform: translate(-50%, -50%) rotate(315deg) translateY(-48px); }
+
+@keyframes rayRotate {
+    from { transform: translate(-50%, -50%) rotate(var(--start, 0deg)) translateY(-48px); }
+    to { transform: translate(-50%, -50%) rotate(calc(var(--start, 0deg) + 360deg)) translateY(-48px); }
+}
+
+.mexico-map {
+    width: 140px;
+    height: 110px;
+}
+
+.love-text-mexico {
+    color: #2d5a27;
+    font-size: 1.1rem;
+    text-shadow: 0 1px 3px rgba(255,255,255,0.5);
+}
+
+/* ===== AIRPLANE PATH ===== */
+.airplane-path {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 120px;
+}
+
+.flight-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.airplane-icon {
+    position: absolute;
+    top: 20%;
+    left: 45%;
+    font-size: 1.8rem;
+    color: #fff;
+    transform: rotate(-20deg);
+    animation: flyPlane 4s ease-in-out infinite;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+@keyframes flyPlane {
+    0%, 100% { transform: rotate(-20deg) translate(0, 0); }
+    25% { transform: rotate(-10deg) translate(5px, -5px); }
+    50% { transform: rotate(-25deg) translate(-3px, 3px); }
+    75% { transform: rotate(-15deg) translate(3px, -2px); }
+}
+
+/* ===== NAVIGATION RIBBONS ===== */
+.nav-ribbons {
+    position: absolute;
+    bottom: 18%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    align-items: center;
+    z-index: 10;
+}
+
+.ribbon-btn {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #c9a84c;
+    text-decoration: none;
+    padding: 0.5rem 2rem;
+    background: rgba(255,255,255,0.7);
+    border-radius: 4px;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    /* Brush stroke effect */
+    clip-path: polygon(2% 10%, 8% 0%, 95% 2%, 100% 15%, 98% 85%, 93% 100%, 5% 98%, 0% 88%);
+}
+
+.ribbon-btn:hover {
+    background: rgba(255,255,255,0.9);
+    transform: scale(1.05);
+    color: #b8942f;
+}
+
+.home-btn-wrapper {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.ribbon-home {
+    font-size: 0.85rem;
+    padding: 0.4rem 1.5rem;
+}
+
+/* ===== STORY START SECTION ===== */
+.story-start {
     min-height: 100vh;
-    background: linear-gradient(180deg, #1a1a2e 0%, #16213e 20%, #0f3460 40%, #e94560 70%, #f7a072 90%, #ffecd2 100%);
+    background: linear-gradient(180deg, #e8734a 0%, #f4845f 30%, #f7a072 60%, #fcd5ce 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -67,157 +349,9 @@ body {
     color: #fff;
 }
 
-.hero-top {
-    position: absolute;
-    top: 1.5rem;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 2rem;
-    font-size: 0.8rem;
-    opacity: 0.8;
-}
-
-.saga-label {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-}
-
-.timeline-label {
-    font-weight: 300;
-}
-
-.hero-content {
+.story-hero {
     max-width: 500px;
     animation: fadeInUp 1.5s ease;
-}
-
-/* ===== INDIA TO MEXICO CONNECTION ===== */
-.connection-map {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    padding: 1.5rem 2rem;
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(10px);
-    border-radius: 60px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-.country {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.3rem;
-}
-
-.country-flag {
-    font-size: 2.5rem;
-    animation: flagPulse 3s ease-in-out infinite;
-}
-
-.country-india .country-flag {
-    animation-delay: 0s;
-}
-
-.country-mexico .country-flag {
-    animation-delay: 1.5s;
-}
-
-@keyframes flagPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.15); }
-}
-
-.country-name {
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    opacity: 0.9;
-}
-
-.connection-line {
-    display: flex;
-    align-items: center;
-    position: relative;
-    width: 100px;
-}
-
-.line-path {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    position: relative;
-}
-
-.line-path::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #ff9933, #fff, #138808, transparent, #006847, #fff, #ce1126);
-    border-radius: 2px;
-    opacity: 0.6;
-}
-
-.dot {
-    width: 4px;
-    height: 4px;
-    background: #fff;
-    border-radius: 50%;
-    position: relative;
-    z-index: 1;
-    animation: dotGlow 2s ease-in-out infinite;
-}
-
-.dot-1 { animation-delay: 0s; }
-.dot-2 { animation-delay: 0.3s; }
-.dot-3 { animation-delay: 0.6s; }
-.dot-4 { animation-delay: 0.9s; }
-.dot-5 { animation-delay: 1.2s; }
-
-@keyframes dotGlow {
-    0%, 100% { opacity: 0.3; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.5); }
-}
-
-.connection-heart {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 1rem;
-    color: #ff6b6b;
-    animation: heartBeat 1.5s ease-in-out infinite;
-    z-index: 2;
-}
-
-@keyframes heartBeat {
-    0%, 100% { transform: translate(-50%, -50%) scale(1); }
-    50% { transform: translate(-50%, -50%) scale(1.3); }
-}
-
-.distance-badge {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    font-size: 0.75rem;
-    font-weight: 300;
-    opacity: 0.7;
-    margin-bottom: 2rem;
-    letter-spacing: 0.5px;
-}
-
-.separator {
-    opacity: 0.5;
 }
 
 .hero-greeting {
@@ -269,14 +403,36 @@ body {
     50% { opacity: 1; }
 }
 
-.hero-wave {
+/* ===== FLOATING HEARTS ===== */
+.floating-hearts {
     position: absolute;
-    bottom: -2px;
+    top: 0;
     left: 0;
     width: 100%;
-    height: 80px;
-    background: #fff;
-    clip-path: ellipse(70% 100% at 50% 100%);
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.floating-heart {
+    position: absolute;
+    font-size: 1.2rem;
+    opacity: 0.15;
+    animation: floatUp 8s ease-in infinite;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% { opacity: 0.15; }
+    90% { opacity: 0.15; }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
 }
 
 /* ===== SECTIONS GENERAL ===== */
@@ -561,17 +717,9 @@ body {
     box-shadow: 0 8px 25px rgba(0,0,0,0.1);
 }
 
-.gradient-1 {
-    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-}
-
-.gradient-2 {
-    background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
-}
-
-.gradient-3 {
-    background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
-}
+.gradient-1 { background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); }
+.gradient-2 { background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%); }
+.gradient-3 { background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%); }
 
 .moment-caption {
     font-family: 'Dancing Script', cursive;
@@ -629,9 +777,7 @@ body {
     transition: transform 0.3s ease;
 }
 
-.envelope:hover {
-    transform: scale(1.05);
-}
+.envelope:hover { transform: scale(1.05); }
 
 .envelope-body {
     width: 100%;
@@ -792,14 +938,8 @@ body {
 }
 
 @keyframes confettiFall {
-    0% {
-        transform: translateY(-100px) rotate(0deg);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(100vh) rotate(720deg);
-        opacity: 0;
-    }
+    0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
 }
 
 /* ===== FOOTER ===== */
@@ -810,10 +950,7 @@ body {
     color: #fff;
 }
 
-.footer p {
-    font-size: 0.9rem;
-    opacity: 0.8;
-}
+.footer p { font-size: 0.9rem; opacity: 0.8; }
 
 .footer em {
     font-family: 'Dancing Script', cursive;
@@ -823,14 +960,8 @@ body {
 
 /* ===== ANIMATIONS ===== */
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeIn {
@@ -840,68 +971,67 @@ body {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-    .hero-title {
-        font-size: 2.2rem;
-    }
-
-    .section-title {
-        font-size: 1.6rem;
-    }
-
-    .proposal-question {
-        font-size: 2rem;
-    }
-
-    .distance-title {
-        font-size: 1.5rem;
-    }
-
-    .highlight-pink {
-        font-size: 1.8rem;
-    }
+    .hero-title { font-size: 2.2rem; }
+    .section-title { font-size: 1.6rem; }
+    .proposal-question { font-size: 2rem; }
+    .distance-title { font-size: 1.5rem; }
+    .highlight-pink { font-size: 1.8rem; }
+    
+    .side-india { left: 2%; }
+    .side-mexico { right: 2%; }
+    .kawaii-sun { width: 80px; height: 80px; }
+    .sun-face { width: 55px; height: 55px; }
+    .sun-ray { height: 12px; }
+    .ray-1 { transform: translate(-50%, -50%) rotate(0deg) translateY(-38px); }
+    .ray-2 { transform: translate(-50%, -50%) rotate(45deg) translateY(-38px); }
+    .ray-3 { transform: translate(-50%, -50%) rotate(90deg) translateY(-38px); }
+    .ray-4 { transform: translate(-50%, -50%) rotate(135deg) translateY(-38px); }
+    .ray-5 { transform: translate(-50%, -50%) rotate(180deg) translateY(-38px); }
+    .ray-6 { transform: translate(-50%, -50%) rotate(225deg) translateY(-38px); }
+    .ray-7 { transform: translate(-50%, -50%) rotate(270deg) translateY(-38px); }
+    .ray-8 { transform: translate(-50%, -50%) rotate(315deg) translateY(-38px); }
+    .moon-body { font-size: 3.5rem; }
+    .india-map { width: 80px; height: 100px; }
+    .mexico-map { width: 100px; height: 80px; }
+    .love-text { font-size: 0.8rem; }
+    .airplane-path { width: 120px; height: 80px; }
+    .airplane-icon { font-size: 1.3rem; }
+    .nav-ribbons { bottom: 12%; }
+    .ribbon-btn { font-size: 0.9rem; padding: 0.4rem 1.5rem; }
 }
 
 @media (max-width: 480px) {
-    .hero-title {
-        font-size: 1.8rem;
-    }
-
-    .section {
-        padding: 4rem 1.5rem;
-    }
-
-    .section-number {
-        font-size: 3rem;
-    }
-
-    .proposal-question {
-        font-size: 1.6rem;
-    }
-
-    .envelope {
-        width: 200px;
-        height: 130px;
-    }
-
+    .hero-title { font-size: 1.8rem; }
+    .section { padding: 4rem 1.5rem; }
+    .section-number { font-size: 3rem; }
+    .proposal-question { font-size: 1.6rem; }
+    .envelope { width: 200px; height: 130px; }
     .envelope-body::before {
         border-left: 100px solid transparent;
         border-right: 100px solid transparent;
         border-top: 65px solid #f7a072;
     }
-
-    .envelope-flap {
-        height: 65px;
-    }
-}
-
-/* ===== SCROLL REVEAL UTILITIES ===== */
-.reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
+    .envelope-flap { height: 65px; }
+    
+    .side-india { left: 1%; }
+    .side-mexico { right: 1%; }
+    .kawaii-sun { width: 60px; height: 60px; }
+    .sun-face { width: 42px; height: 42px; }
+    .sun-ray { height: 10px; }
+    .ray-1 { transform: translate(-50%, -50%) rotate(0deg) translateY(-30px); }
+    .ray-2 { transform: translate(-50%, -50%) rotate(45deg) translateY(-30px); }
+    .ray-3 { transform: translate(-50%, -50%) rotate(90deg) translateY(-30px); }
+    .ray-4 { transform: translate(-50%, -50%) rotate(135deg) translateY(-30px); }
+    .ray-5 { transform: translate(-50%, -50%) rotate(180deg) translateY(-30px); }
+    .ray-6 { transform: translate(-50%, -50%) rotate(225deg) translateY(-30px); }
+    .ray-7 { transform: translate(-50%, -50%) rotate(270deg) translateY(-30px); }
+    .ray-8 { transform: translate(-50%, -50%) rotate(315deg) translateY(-30px); }
+    .moon-body { font-size: 2.5rem; }
+    .india-map { width: 60px; height: 75px; }
+    .mexico-map { width: 75px; height: 60px; }
+    .love-text { font-size: 0.7rem; }
+    .airplane-path { width: 80px; height: 60px; top: 30%; }
+    .airplane-icon { font-size: 1rem; }
+    .nav-ribbons { bottom: 8%; gap: 0.4rem; }
+    .ribbon-btn { font-size: 0.75rem; padding: 0.35rem 1.2rem; letter-spacing: 1px; }
 }

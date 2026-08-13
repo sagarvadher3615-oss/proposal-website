@@ -1,6 +1,25 @@
+// ===== GENERATE STARS FOR NIGHT SIDE =====
+function createStars() {
+    const container = document.getElementById('starsContainer');
+    if (!container) return;
+    
+    for (let i = 0; i < 60; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.width = (1 + Math.random() * 3) + 'px';
+        star.style.height = star.style.width;
+        star.style.animationDelay = Math.random() * 3 + 's';
+        star.style.animationDuration = (1.5 + Math.random() * 2) + 's';
+        container.appendChild(star);
+    }
+}
+
 // ===== FLOATING HEARTS =====
 function createFloatingHearts() {
     const container = document.getElementById('floatingHearts');
+    if (!container) return;
     const hearts = ['♥', '♡', '❤', '💕', '💗'];
     
     setInterval(() => {
@@ -12,7 +31,6 @@ function createFloatingHearts() {
         heart.style.fontSize = (0.8 + Math.random() * 1) + 'rem';
         container.appendChild(heart);
 
-        // Remove heart after animation
         setTimeout(() => {
             heart.remove();
         }, 12000);
@@ -29,7 +47,6 @@ function setupScrollReveal() {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                // For moment cards, add staggered delay
                 if (entry.target.classList.contains('moment-card')) {
                     const cards = document.querySelectorAll('.moment-card');
                     cards.forEach((card, index) => {
@@ -52,6 +69,7 @@ function setupScrollReveal() {
 function setupEnvelope() {
     const envelope = document.getElementById('envelope');
     const letterContent = document.getElementById('letterContent');
+    if (!envelope || !letterContent) return;
 
     envelope.addEventListener('click', () => {
         envelope.classList.toggle('opened');
@@ -70,17 +88,14 @@ function setupEnvelope() {
 function setupProposal() {
     const btn = document.getElementById('proposalBtn');
     const celebration = document.getElementById('celebration');
+    if (!btn || !celebration) return;
 
     btn.addEventListener('click', () => {
-        // Create confetti explosion
         createConfetti(celebration);
-        
-        // Change button text
         btn.textContent = '💛 Forever & always 💛';
         btn.style.background = 'linear-gradient(135deg, #f7a072, #ffecd2)';
         btn.style.color = '#e8734a';
         
-        // Add celebration hearts
         setTimeout(() => {
             createCelebrationHearts();
         }, 500);
@@ -100,18 +115,9 @@ function createConfetti(container) {
         confetti.style.height = (5 + Math.random() * 10) + 'px';
         confetti.style.animationDelay = Math.random() * 2 + 's';
         confetti.style.animationDuration = (2 + Math.random() * 3) + 's';
-        
-        // Random shapes
-        if (Math.random() > 0.5) {
-            confetti.style.borderRadius = '50%';
-        }
-        
+        if (Math.random() > 0.5) confetti.style.borderRadius = '50%';
         container.appendChild(confetti);
-        
-        // Remove after animation
-        setTimeout(() => {
-            confetti.remove();
-        }, 5000);
+        setTimeout(() => { confetti.remove(); }, 5000);
     }
 }
 
@@ -131,63 +137,34 @@ function createCelebrationHearts() {
         heart.style.height = 'auto';
         heart.style.animationDelay = Math.random() * 1.5 + 's';
         heart.style.animationDuration = (2.5 + Math.random() * 3) + 's';
-        
         container.appendChild(heart);
-        
-        setTimeout(() => {
-            heart.remove();
-        }, 6000);
+        setTimeout(() => { heart.remove(); }, 6000);
     }
 }
 
-// ===== PARALLAX EFFECT ON HERO =====
-function setupParallax() {
-    const hero = document.querySelector('.hero-content');
-    
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        if (scrolled < window.innerHeight) {
-            hero.style.transform = `translateY(${scrolled * 0.3}px)`;
-            hero.style.opacity = 1 - (scrolled / window.innerHeight);
-        }
-    });
-}
-
-// ===== TYPEWRITER EFFECT FOR HERO (subtle) =====
-function setupTypewriter() {
-    const title = document.querySelector('.hero-title');
-    title.style.opacity = '0';
-    
-    setTimeout(() => {
-        title.style.opacity = '1';
-        title.style.animation = 'fadeInUp 1.5s ease forwards';
-    }, 500);
-}
-
-// ===== SMOOTH SCROLL FOR SECTIONS =====
-function setupSmoothScroll() {
-    // Add smooth entrance for the distance section
-    const distanceSection = document.querySelector('.section-distance');
-    const distanceObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.querySelector('.distance-title').style.animation = 'fadeInUp 1s ease forwards';
+// ===== SMOOTH NAV SCROLL =====
+function setupNavigation() {
+    const ribbons = document.querySelectorAll('.ribbon-btn');
+    ribbons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const href = btn.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
             }
         });
-    }, { threshold: 0.3 });
-    
-    if (distanceSection) {
-        distanceObserver.observe(distanceSection);
-    }
+    });
 }
 
 // ===== INITIALIZE =====
 document.addEventListener('DOMContentLoaded', () => {
+    createStars();
     createFloatingHearts();
     setupScrollReveal();
     setupEnvelope();
     setupProposal();
-    setupParallax();
-    setupTypewriter();
-    setupSmoothScroll();
+    setupNavigation();
 });

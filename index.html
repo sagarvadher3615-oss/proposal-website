@@ -6,46 +6,105 @@
     <title>Saga :: M. Amor</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@400;700&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Floating hearts background -->
-    <div class="floating-hearts" id="floatingHearts"></div>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-top">
-            <span class="saga-label">Saga :: M. Amor</span>
-            <span class="timeline-label">Timeline &darr;</span>
+    <!-- ===== HERO / LANDING PAGE ===== -->
+    <section class="hero-landing" id="heroLanding">
+        <!-- Date stamp -->
+        <div class="date-stamp">
+            <span>Created: 16/07/2026</span>
+            <span>Last Updated: 12/08/26</span>
         </div>
-        <div class="hero-content">
-            <!-- India to Mexico Connection -->
-            <div class="connection-map">
-                <div class="country country-india">
-                    <span class="country-flag">🇮🇳</span>
-                    <span class="country-name">India</span>
+
+        <!-- Stars (night side) -->
+        <div class="stars-container" id="starsContainer"></div>
+
+        <!-- Clouds -->
+        <div class="cloud cloud-1">&#9729;</div>
+        <div class="cloud cloud-2">&#9729;</div>
+        <div class="cloud cloud-3">&#9729;</div>
+        <div class="cloud cloud-4">&#9729;</div>
+
+        <!-- India Side (Left - Night) -->
+        <div class="side-india">
+            <div class="kawaii-moon">
+                <div class="moon-face">
+                    <div class="moon-body">&#127769;</div>
                 </div>
-                <div class="connection-line">
-                    <div class="line-path">
-                        <span class="dot dot-1"></span>
-                        <span class="dot dot-2"></span>
-                        <span class="dot dot-3"></span>
-                        <span class="dot dot-4"></span>
-                        <span class="dot dot-5"></span>
+            </div>
+            <div class="india-map">
+                <svg viewBox="0 0 200 240" class="map-svg map-india-svg">
+                    <path d="M100,10 C85,10 70,15 60,25 C50,35 45,50 42,65 C38,80 35,95 38,110 C40,120 45,130 42,140 C39,150 35,160 38,170 C42,185 50,195 60,205 C70,215 80,225 95,230 C105,235 115,230 125,220 C135,210 142,195 148,180 C155,165 160,150 158,135 C155,120 150,105 148,90 C145,75 140,60 132,48 C125,35 115,25 105,18 C103,12 101,10 100,10Z" 
+                    fill="rgba(255,220,150,0.6)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+                </svg>
+            </div>
+            <p class="love-text love-text-india">Hu tane prem karu chhu</p>
+        </div>
+
+        <!-- Airplane Path (Center) -->
+        <div class="airplane-path">
+            <svg class="flight-svg" viewBox="0 0 200 120">
+                <path d="M10,90 C40,85 60,40 100,35 C140,30 160,75 190,70" 
+                      fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-dasharray="8,6"/>
+                <circle cx="10" cy="90" r="3" fill="rgba(255,255,255,0.4)"/>
+                <circle cx="50" cy="55" r="2" fill="rgba(255,255,255,0.3)"/>
+                <circle cx="150" cy="55" r="2" fill="rgba(255,255,255,0.3)"/>
+                <circle cx="190" cy="70" r="3" fill="rgba(255,255,255,0.4)"/>
+            </svg>
+            <div class="airplane-icon">&#9992;</div>
+        </div>
+
+        <!-- Mexico Side (Right - Day) -->
+        <div class="side-mexico">
+            <div class="kawaii-sun">
+                <div class="sun-ray ray-1"></div>
+                <div class="sun-ray ray-2"></div>
+                <div class="sun-ray ray-3"></div>
+                <div class="sun-ray ray-4"></div>
+                <div class="sun-ray ray-5"></div>
+                <div class="sun-ray ray-6"></div>
+                <div class="sun-ray ray-7"></div>
+                <div class="sun-ray ray-8"></div>
+                <div class="sun-face">
+                    <div class="sun-eyes">
+                        <span class="sun-eye">&#9679;</span>
+                        <span class="sun-eye">&#9679;</span>
                     </div>
-                    <span class="connection-heart">&hearts;</span>
-                </div>
-                <div class="country country-mexico">
-                    <span class="country-flag">🇲🇽</span>
-                    <span class="country-name">M&eacute;xico</span>
+                    <div class="sun-mouth">&#8�;</div>
+                    <div class="sun-blush blush-left"></div>
+                    <div class="sun-blush blush-right"></div>
                 </div>
             </div>
-            <div class="distance-badge">
-                <span>14,000+ km apart</span>
-                <span class="separator">&bull;</span>
-                <span>11.5 hrs difference</span>
+            <div class="mexico-map">
+                <svg viewBox="0 0 220 180" class="map-svg map-mexico-svg">
+                    <path d="M30,50 C40,40 60,35 80,30 C100,25 130,28 155,35 C175,40 190,50 195,65 C200,80 195,95 185,105 C175,115 160,120 145,130 C130,140 115,155 100,160 C85,155 70,145 60,135 C50,125 40,115 35,100 C30,85 25,70 30,50Z"
+                    fill="rgba(150,220,130,0.5)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+                </svg>
             </div>
+            <p class="love-text love-text-mexico">Te amo</p>
+        </div>
+
+        <!-- Navigation Ribbons -->
+        <nav class="nav-ribbons">
+            <a href="#story" class="ribbon-btn">START</a>
+            <a href="#sectionMeet" class="ribbon-btn">STORY</a>
+            <a href="#sectionSong" class="ribbon-btn">SONGS</a>
+            <a href="#sectionLetter" class="ribbon-btn">LETTERS</a>
+            <a href="#sectionProposal" class="ribbon-btn">EXTRA</a>
+        </nav>
+
+        <!-- Home button bottom -->
+        <div class="home-btn-wrapper">
+            <a href="#heroLanding" class="ribbon-btn ribbon-home">HOME</a>
+        </div>
+    </section>
+
+    <!-- ===== STORY START ===== -->
+    <section class="story-start" id="story">
+        <div class="floating-hearts" id="floatingHearts"></div>
+        <div class="story-hero">
             <p class="hero-greeting">from <em>Jodu</em>, with love to my <em>M. Amor</em> &hearts;</p>
             <h1 class="hero-title">
                 Hola,<br>
@@ -57,11 +116,10 @@
                 <div class="scroll-arrow">&darr;</div>
             </div>
         </div>
-        <div class="hero-wave"></div>
     </section>
 
     <!-- Section 01: How We Met -->
-    <section class="section section-meet">
+    <section class="section section-meet" id="sectionMeet">
         <div class="section-number">01</div>
         <h2 class="section-title">Two strangers, one<br>screen</h2>
         <p class="section-text">
@@ -72,7 +130,7 @@
         </p>
         <p class="section-text">
             I don't believe in fate but what I do<br>
-            believe? Iya't kapalaran ka nag o, ang sabi ng <br>
+            believe? Iya't kapalaran ka nag o, ang sabi ng<br>
             may isip.
         </p>
         <div class="meet-names">
@@ -90,7 +148,7 @@
     </section>
 
     <!-- Song Section -->
-    <section class="section section-song">
+    <section class="section section-song" id="sectionSong">
         <h2 class="song-title">The song <em>for you</em></h2>
         <p class="song-text">
             There is a song that your love traced in my life,<br>
@@ -187,7 +245,7 @@
     </section>
 
     <!-- Letter Section -->
-    <section class="section section-letter">
+    <section class="section section-letter" id="sectionLetter">
         <h3 class="letter-label">a gift &amp; a letter</h3>
         <div class="envelope" id="envelope">
             <div class="envelope-flap"></div>
@@ -206,7 +264,7 @@
     </section>
 
     <!-- Proposal Section -->
-    <section class="section section-proposal">
+    <section class="section section-proposal" id="sectionProposal">
         <p class="proposal-pretext">will you be mine, <em>forever?</em></p>
         <h2 class="proposal-question">Will you be mine<br>&mdash; forever?</h2>
         <button class="proposal-btn" id="proposalBtn">Yes, always &#128155;</button>
