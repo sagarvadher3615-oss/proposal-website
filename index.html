@@ -11,45 +11,43 @@
 </head>
 <body>
     <section class="landing">
-        <!-- Clouds on day/Mexico side (left) -->
+        <!-- Clouds on day/India side (left) -->
         <div class="clouds">
             <div class="cloud c1"></div>
             <div class="cloud c2"></div>
             <div class="cloud c3"></div>
         </div>
 
-        <!-- Sun on day side (top-left area) -->
+        <!-- Sun on day side (top-left) -->
         <div class="sun"></div>
 
-        <!-- Stars on night/India side (right) -->
+        <!-- Stars on night/Mexico side (right) -->
         <div class="stars" id="stars"></div>
 
-        <!-- Mexico map (LEFT - Day) -->
+        <!-- Moon on night side (top-right) -->
+        <div class="moon"></div>
+
+        <!-- India map (LEFT - Day) -->
         <div class="side side-left">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c8/Mexico_blank_color_map.svg" alt="Mexico Map" class="map-img map-mexico">
+            <img src="india.svg" alt="India" class="map-img map-india">
         </div>
 
         <!-- Flight Route (CENTER) -->
         <div class="flight-center">
-            <svg class="route-svg" viewBox="0 0 300 150" preserveAspectRatio="xMidYMid meet">
-                <!-- Dashed curved path -->
-                <path d="M20,120 C60,120 80,30 150,30 C220,30 240,120 280,120" 
-                      fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" 
+            <svg class="route-svg" viewBox="0 0 300 160" preserveAspectRatio="xMidYMid meet">
+                <path d="M10,130 C50,130 70,25 150,25 C230,25 250,130 290,130" 
+                      fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2.5" 
                       stroke-dasharray="12,8" class="dash-path"/>
-                <!-- Small loop/circles along route -->
-                <circle cx="90" cy="55" r="8" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-dasharray="4,3"/>
-                <circle cx="210" cy="55" r="8" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-dasharray="4,3"/>
-                <!-- Location pin at start -->
-                <path d="M148,18 a6,6 0 1,0 4,0 a6,6 0 1,0 -4,0" fill="rgba(255,255,255,0.6)"/>
-                <path d="M150,25 L150,32" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+                <!-- Small loops -->
+                <circle cx="85" cy="52" r="10" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2" stroke-dasharray="5,4"/>
+                <circle cx="215" cy="52" r="10" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2" stroke-dasharray="5,4"/>
             </svg>
-            <!-- Tickets icon -->
             <div class="tickets">🎫✈️</div>
         </div>
 
-        <!-- India map (RIGHT - Night) -->
+        <!-- Mexico map (RIGHT - Night) -->
         <div class="side side-right">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/1/11/India_States_and_UT_-_blank_map.svg" alt="India Map" class="map-img map-india">
+            <img src="mexico.svg" alt="Mexico" class="map-img map-mexico">
         </div>
     </section>
 

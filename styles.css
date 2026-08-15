@@ -18,35 +18,50 @@ body {
     justify-content: space-between;
     position: relative;
     overflow: hidden;
-    /* Day (Mexico/left) → Night (India/right) */
+    /* India/Day (left) → Mexico/Night (right) */
     background: linear-gradient(
         to right,
-        #7EC8E3 0%,
-        #5DADE2 20%,
-        #4195C4 40%,
-        #2E6F9E 55%,
-        #1B4F72 70%,
-        #14364F 85%,
-        #0D2137 100%
+        #87CEEB 0%,
+        #6EBAE8 15%,
+        #55A5D9 30%,
+        #3D8FC7 42%,
+        #2B6FA5 55%,
+        #1D4E7E 68%,
+        #133658 80%,
+        #0B2140 90%,
+        #061526 100%
     );
 }
 
 /* ===== SUN (top-left, day side) ===== */
 .sun {
     position: absolute;
-    top: -30px;
-    left: 10%;
+    top: -25px;
+    left: 8%;
     width: 130px;
     height: 130px;
-    background: radial-gradient(circle, #FFE066 0%, #FFCC00 40%, #FFA500 70%, transparent 72%);
+    background: radial-gradient(circle, #FFF176 0%, #FFEE58 30%, #FFD600 55%, #FF8F00 75%, transparent 78%);
     border-radius: 50%;
     z-index: 2;
-    animation: sunPulse 4s ease-in-out infinite;
+    animation: sunGlow 5s ease-in-out infinite;
 }
 
-@keyframes sunPulse {
+@keyframes sunGlow {
     0%, 100% { transform: scale(1); opacity: 0.9; }
-    50% { transform: scale(1.08); opacity: 1; }
+    50% { transform: scale(1.06); opacity: 1; }
+}
+
+/* ===== MOON (top-right, night side) ===== */
+.moon {
+    position: absolute;
+    top: 8%;
+    right: 8%;
+    width: 70px;
+    height: 70px;
+    background: radial-gradient(circle at 35% 35%, #FFFDE7 0%, #FFF9C4 40%, #F5F5DC 70%, #E8E4C9 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(255,253,231,0.4), 0 0 50px rgba(255,253,231,0.15);
+    z-index: 2;
 }
 
 /* ===== CLOUDS (day/left side) ===== */
@@ -54,7 +69,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    width: 45%;
+    width: 42%;
     height: 100%;
     pointer-events: none;
     z-index: 3;
@@ -62,52 +77,52 @@ body {
 
 .cloud {
     position: absolute;
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.9);
     border-radius: 50px;
-    animation: drift 18s ease-in-out infinite;
+    animation: drift 20s ease-in-out infinite;
 }
 
 .cloud::before, .cloud::after {
     content: '';
     position: absolute;
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.9);
     border-radius: 50%;
 }
 
 .c1 {
-    width: 120px;
-    height: 40px;
-    top: 5%;
-    left: 20%;
+    width: 110px;
+    height: 36px;
+    top: 6%;
+    left: 22%;
 }
-.c1::before { width: 55px; height: 55px; top: -25px; left: 20px; }
-.c1::after { width: 65px; height: 65px; top: -32px; left: 50px; }
+.c1::before { width: 50px; height: 50px; top: -22px; left: 18px; }
+.c1::after { width: 60px; height: 60px; top: -30px; left: 45px; }
 
 .c2 {
-    width: 90px;
-    height: 30px;
-    top: 15%;
-    left: 5%;
-    opacity: 0.7;
-    animation-delay: -6s;
+    width: 85px;
+    height: 28px;
+    top: 18%;
+    left: 4%;
+    opacity: 0.75;
+    animation-delay: -7s;
 }
-.c2::before { width: 40px; height: 40px; top: -18px; left: 15px; }
-.c2::after { width: 50px; height: 50px; top: -24px; left: 38px; }
+.c2::before { width: 38px; height: 38px; top: -16px; left: 14px; }
+.c2::after { width: 46px; height: 46px; top: -22px; left: 35px; }
 
 .c3 {
-    width: 70px;
-    height: 24px;
-    top: 25%;
+    width: 65px;
+    height: 22px;
+    top: 30%;
     left: 30%;
     opacity: 0.5;
-    animation-delay: -12s;
+    animation-delay: -13s;
 }
-.c3::before { width: 32px; height: 32px; top: -14px; left: 10px; }
-.c3::after { width: 38px; height: 38px; top: -18px; left: 28px; }
+.c3::before { width: 28px; height: 28px; top: -12px; left: 10px; }
+.c3::after { width: 34px; height: 34px; top: -16px; left: 26px; }
 
 @keyframes drift {
     0%, 100% { transform: translateX(0); }
-    50% { transform: translateX(25px); }
+    50% { transform: translateX(20px); }
 }
 
 /* ===== STARS (night/right side) ===== */
@@ -129,49 +144,49 @@ body {
 }
 
 .star-big {
-    width: 6px;
-    height: 6px;
-    background: #FFE066;
-    box-shadow: 0 0 4px #FFE066;
+    width: 5px !important;
+    height: 5px !important;
+    background: #FFF176;
+    box-shadow: 0 0 6px rgba(255,241,118,0.6);
 }
 
 @keyframes twinkle {
     0% { opacity: 0.2; transform: scale(0.7); }
-    100% { opacity: 1; transform: scale(1.2); }
+    100% { opacity: 1; transform: scale(1.3); }
 }
 
 /* ===== MAP SIDES ===== */
 .side {
-    z-index: 4;
+    z-index: 5;
     display: flex;
     align-items: center;
-    padding: 2rem;
+    justify-content: center;
+    flex-shrink: 0;
 }
 
 .side-left {
-    padding-left: 3%;
+    padding-left: 4%;
 }
 
 .side-right {
-    padding-right: 3%;
+    padding-right: 4%;
 }
 
 .map-img {
     height: auto;
-    filter: drop-shadow(0 5px 20px rgba(0,0,0,0.3));
-    animation: mapFloat 5s ease-in-out infinite;
-}
-
-.map-mexico {
-    width: 260px;
-    opacity: 0.9;
+    animation: mapFloat 6s ease-in-out infinite;
 }
 
 .map-india {
-    width: 200px;
-    opacity: 0.85;
-    /* Tint to beige/tan like reference */
-    filter: drop-shadow(0 5px 20px rgba(0,0,0,0.3)) sepia(0.3) saturate(0.8) brightness(1.1);
+    width: 180px;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2)) 
+           brightness(1.1) sepia(0.2) hue-rotate(-10deg) saturate(1.3);
+}
+
+.map-mexico {
+    width: 220px;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3))
+           brightness(0.95) hue-rotate(80deg) saturate(0.7);
 }
 
 @keyframes mapFloat {
@@ -185,13 +200,11 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 35%;
-    height: 50%;
-    z-index: 5;
+    width: 32%;
+    z-index: 6;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
 }
 
 .route-svg {
@@ -200,7 +213,7 @@ body {
 }
 
 .dash-path {
-    animation: dashAnim 2s linear infinite;
+    animation: dashAnim 2.5s linear infinite;
 }
 
 @keyframes dashAnim {
@@ -209,52 +222,55 @@ body {
 }
 
 .tickets {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     margin-top: 0.5rem;
-    animation: ticketFloat 3s ease-in-out infinite;
+    animation: ticketFloat 4s ease-in-out infinite;
     filter: drop-shadow(0 3px 8px rgba(0,0,0,0.2));
 }
 
 @keyframes ticketFloat {
-    0%, 100% { transform: translateY(0) rotate(-5deg); }
-    50% { transform: translateY(-6px) rotate(5deg); }
+    0%, 100% { transform: translateY(0) rotate(-3deg); }
+    50% { transform: translateY(-8px) rotate(3deg); }
 }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-    .map-mexico { width: 180px; }
-    .map-india { width: 140px; }
-    .flight-center { width: 45%; }
-    .tickets { font-size: 2rem; }
-    .sun { width: 90px; height: 90px; left: 5%; }
+    .map-india { width: 130px; }
+    .map-mexico { width: 160px; }
+    .flight-center { width: 40%; }
+    .tickets { font-size: 1.8rem; }
+    .sun { width: 100px; height: 100px; left: 5%; }
+    .moon { width: 55px; height: 55px; }
 }
 
 @media (max-width: 480px) {
     .landing {
         flex-direction: column;
         justify-content: center;
-        gap: 1rem;
+        gap: 1.5rem;
+        padding: 2rem;
         background: linear-gradient(
             to bottom,
-            #7EC8E3 0%,
-            #5DADE2 25%,
-            #2E6F9E 50%,
-            #1B4F72 75%,
-            #0D2137 100%
+            #87CEEB 0%,
+            #55A5D9 30%,
+            #2B6FA5 55%,
+            #1D4E7E 75%,
+            #0B2140 100%
         );
     }
 
-    .map-mexico { width: 140px; }
+    .side-left, .side-right { padding: 0; }
     .map-india { width: 110px; }
+    .map-mexico { width: 140px; }
     .flight-center {
         position: relative;
         top: auto; left: auto;
         transform: none;
         width: 70%;
-        height: 80px;
     }
     .tickets { font-size: 1.5rem; }
-    .sun { width: 70px; height: 70px; top: -20px; left: 5%; }
+    .sun { width: 80px; height: 80px; top: -15px; left: 5%; }
+    .moon { width: 45px; height: 45px; top: 5%; right: 5%; }
     .clouds { width: 100%; height: 35%; }
-    .stars { width: 100%; height: 45%; top: 55%; }
+    .stars { width: 100%; height: 50%; top: 50%; }
 }
