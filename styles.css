@@ -179,14 +179,12 @@ body {
 
 .map-india {
     width: 180px;
-    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2)) 
-           brightness(1.1) sepia(0.2) hue-rotate(-10deg) saturate(1.3);
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
 }
 
 .map-mexico {
     width: 220px;
-    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3))
-           brightness(0.95) hue-rotate(80deg) saturate(0.7);
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
 }
 
 @keyframes mapFloat {
