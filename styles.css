@@ -36,10 +36,10 @@ body {
 /* ===== SUN (top-left, day side) ===== */
 .sun {
     position: absolute;
-    top: -25px;
-    left: 8%;
-    width: 130px;
-    height: 130px;
+    top: -20px;
+    left: 5%;
+    width: 100px;
+    height: 100px;
     background: radial-gradient(circle, #FFF176 0%, #FFEE58 30%, #FFD600 55%, #FF8F00 75%, transparent 78%);
     border-radius: 50%;
     z-index: 2;
@@ -55,13 +55,25 @@ body {
 .moon {
     position: absolute;
     top: 8%;
-    right: 8%;
-    width: 70px;
-    height: 70px;
-    background: radial-gradient(circle at 35% 35%, #FFFDE7 0%, #FFF9C4 40%, #F5F5DC 70%, #E8E4C9 100%);
+    right: 6%;
+    width: 60px;
+    height: 60px;
+    background: #FFFDE7;
     border-radius: 50%;
-    box-shadow: 0 0 20px rgba(255,253,231,0.4), 0 0 50px rgba(255,253,231,0.15);
+    box-shadow: 0 0 15px rgba(255,253,231,0.5), 0 0 40px rgba(255,253,231,0.2);
     z-index: 2;
+}
+
+/* Crescent effect */
+.moon::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 50px;
+    height: 50px;
+    background: #0B2140;
+    border-radius: 50%;
 }
 
 /* ===== CLOUDS (day/left side) ===== */
@@ -69,7 +81,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    width: 42%;
+    width: 45%;
     height: 100%;
     pointer-events: none;
     z-index: 3;
@@ -90,39 +102,39 @@ body {
 }
 
 .c1 {
-    width: 110px;
-    height: 36px;
-    top: 6%;
-    left: 22%;
+    width: 90px;
+    height: 30px;
+    top: 8%;
+    left: 18%;
 }
-.c1::before { width: 50px; height: 50px; top: -22px; left: 18px; }
-.c1::after { width: 60px; height: 60px; top: -30px; left: 45px; }
+.c1::before { width: 40px; height: 40px; top: -18px; left: 15px; }
+.c1::after { width: 50px; height: 50px; top: -25px; left: 38px; }
 
 .c2 {
-    width: 85px;
-    height: 28px;
-    top: 18%;
-    left: 4%;
+    width: 70px;
+    height: 22px;
+    top: 15%;
+    left: 5%;
     opacity: 0.75;
     animation-delay: -7s;
 }
-.c2::before { width: 38px; height: 38px; top: -16px; left: 14px; }
-.c2::after { width: 46px; height: 46px; top: -22px; left: 35px; }
+.c2::before { width: 32px; height: 32px; top: -14px; left: 12px; }
+.c2::after { width: 38px; height: 38px; top: -18px; left: 30px; }
 
 .c3 {
-    width: 65px;
-    height: 22px;
-    top: 30%;
-    left: 30%;
+    width: 55px;
+    height: 18px;
+    top: 22%;
+    left: 28%;
     opacity: 0.5;
     animation-delay: -13s;
 }
-.c3::before { width: 28px; height: 28px; top: -12px; left: 10px; }
-.c3::after { width: 34px; height: 34px; top: -16px; left: 26px; }
+.c3::before { width: 24px; height: 24px; top: -10px; left: 8px; }
+.c3::after { width: 30px; height: 30px; top: -14px; left: 22px; }
 
 @keyframes drift {
     0%, 100% { transform: translateX(0); }
-    50% { transform: translateX(20px); }
+    50% { transform: translateX(15px); }
 }
 
 /* ===== STARS (night/right side) ===== */
@@ -155,21 +167,20 @@ body {
     100% { opacity: 1; transform: scale(1.3); }
 }
 
-/* ===== MAP SIDES ===== */
+/* ===== MAP SIDES - ALWAYS HORIZONTAL ===== */
 .side {
     z-index: 5;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
 }
 
 .side-left {
-    padding-left: 4%;
+    padding-left: 3%;
 }
 
 .side-right {
-    padding-right: 4%;
+    padding-right: 3%;
 }
 
 .map-img {
@@ -178,18 +189,18 @@ body {
 }
 
 .map-india {
-    width: 180px;
-    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+    width: min(22vw, 180px);
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
 }
 
 .map-mexico {
-    width: 220px;
-    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+    width: min(28vw, 220px);
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.25));
 }
 
 @keyframes mapFloat {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    50% { transform: translateY(-8px); }
 }
 
 /* ===== FLIGHT ROUTE (center) ===== */
@@ -198,7 +209,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 32%;
+    width: 35%;
     z-index: 6;
     display: flex;
     flex-direction: column;
@@ -220,55 +231,42 @@ body {
 }
 
 .tickets {
-    font-size: 2.2rem;
-    margin-top: 0.5rem;
+    margin-top: 0.3rem;
     animation: ticketFloat 4s ease-in-out infinite;
-    filter: drop-shadow(0 3px 8px rgba(0,0,0,0.2));
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.15));
+}
+
+.tickets svg {
+    width: 50px;
+    height: auto;
 }
 
 @keyframes ticketFloat {
     0%, 100% { transform: translateY(0) rotate(-3deg); }
-    50% { transform: translateY(-8px) rotate(3deg); }
+    50% { transform: translateY(-6px) rotate(3deg); }
 }
 
-/* ===== RESPONSIVE ===== */
+/* ===== RESPONSIVE - KEEP HORIZONTAL ===== */
 @media (max-width: 768px) {
-    .map-india { width: 130px; }
-    .map-mexico { width: 160px; }
+    .map-india { width: 20vw; }
+    .map-mexico { width: 26vw; }
     .flight-center { width: 40%; }
-    .tickets { font-size: 1.8rem; }
-    .sun { width: 100px; height: 100px; left: 5%; }
-    .moon { width: 55px; height: 55px; }
+    .sun { width: 80px; height: 80px; left: 3%; top: -15px; }
+    .moon { width: 45px; height: 45px; top: 6%; right: 5%; }
+    .moon::after { width: 38px; height: 38px; }
 }
 
 @media (max-width: 480px) {
-    .landing {
-        flex-direction: column;
-        justify-content: center;
-        gap: 1.5rem;
-        padding: 2rem;
-        background: linear-gradient(
-            to bottom,
-            #87CEEB 0%,
-            #55A5D9 30%,
-            #2B6FA5 55%,
-            #1D4E7E 75%,
-            #0B2140 100%
-        );
-    }
-
-    .side-left, .side-right { padding: 0; }
-    .map-india { width: 110px; }
-    .map-mexico { width: 140px; }
-    .flight-center {
-        position: relative;
-        top: auto; left: auto;
-        transform: none;
-        width: 70%;
-    }
-    .tickets { font-size: 1.5rem; }
-    .sun { width: 80px; height: 80px; top: -15px; left: 5%; }
-    .moon { width: 45px; height: 45px; top: 5%; right: 5%; }
-    .clouds { width: 100%; height: 35%; }
-    .stars { width: 100%; height: 50%; top: 50%; }
+    .map-india { width: 25vw; }
+    .map-mexico { width: 30vw; }
+    .side-left { padding-left: 2%; }
+    .side-right { padding-right: 2%; }
+    .flight-center { width: 35%; }
+    .tickets svg { width: 35px; }
+    .sun { width: 65px; height: 65px; left: 2%; top: -10px; }
+    .moon { width: 35px; height: 35px; top: 5%; right: 4%; }
+    .moon::after { width: 30px; height: 30px; top: -4px; right: -4px; }
+    .c1 { width: 60px; height: 20px; }
+    .c1::before { width: 28px; height: 28px; top: -12px; left: 10px; }
+    .c1::after { width: 34px; height: 34px; top: -16px; left: 26px; }
 }
