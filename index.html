@@ -11,60 +11,45 @@
 </head>
 <body>
     <section class="landing">
-        <!-- India side (Day) -->
-        <div class="side side-india">
-            <svg class="map-india" viewBox="0 0 300 350" xmlns="http://www.w3.org/2000/svg">
-                <path d="M152,8 L168,10 L180,18 L190,12 L198,18 L206,16 L218,22 L228,20 L236,28 L244,26 L252,32 L248,42 L240,48 L244,58 L250,66 L256,62 L262,68 L258,78 L250,82 L246,92 L250,100 L244,108 L238,104 L230,110 L224,120 L218,116 L210,122 L204,132 L198,128 L190,136 L184,146 L178,142 L170,150 L164,160 L158,156 L152,166 L146,176 L140,172 L134,182 L128,192 L122,188 L116,198 L110,208 L104,204 L98,214 L92,224 L88,220 L84,228 L80,236 L76,232 L72,240 L68,248 L72,256 L78,260 L84,268 L90,272 L96,278 L102,274 L108,280 L114,276 L120,272 L126,266 L132,260 L138,254 L142,248 L148,242 L154,236 L158,230 L162,224 L168,218 L172,210 L178,202 L184,194 L188,186 L192,178 L196,170 L200,162 L204,154 L208,146 L212,138 L216,130 L218,122 L214,114 L208,108 L202,102 L196,96 L190,90 L184,84 L178,78 L172,72 L166,66 L160,58 L154,50 L150,42 L146,34 L148,26 L150,18 Z" 
-                fill="url(#indiaGrad)" stroke="#e67e22" stroke-width="1.5" opacity="0.9"/>
-                <defs>
-                    <linearGradient id="indiaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#f39c12"/>
-                        <stop offset="50%" stop-color="#e67e22"/>
-                        <stop offset="100%" stop-color="#d35400"/>
-                    </linearGradient>
-                </defs>
-            </svg>
-            <p class="side-label">India</p>
-        </div>
-
-        <!-- Flight Route -->
-        <div class="flight-route">
-            <svg class="route-svg" viewBox="0 0 400 200" preserveAspectRatio="none">
-                <path d="M30,150 C100,150 120,40 200,40 C280,40 300,150 370,150" 
-                      fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-dasharray="10,8" class="dash-path"/>
-                <!-- Small circles along the path -->
-                <circle cx="80" cy="100" r="3" fill="rgba(255,255,255,0.3)"/>
-                <circle cx="140" cy="55" r="3" fill="rgba(255,255,255,0.3)"/>
-                <circle cx="260" cy="55" r="3" fill="rgba(255,255,255,0.3)"/>
-                <circle cx="320" cy="100" r="3" fill="rgba(255,255,255,0.3)"/>
-            </svg>
-            <div class="plane">✈</div>
-        </div>
-
-        <!-- Mexico side (Night) -->
-        <div class="side side-mexico">
-            <svg class="map-mexico" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
-                <path d="M50,80 L70,72 L90,68 L110,60 L130,56 L150,52 L170,48 L190,50 L210,52 L230,56 L250,60 L270,66 L290,72 L310,80 L320,90 L325,102 L328,114 L326,126 L320,138 L312,148 L302,156 L290,162 L278,170 L266,178 L254,186 L242,194 L230,200 L218,206 L206,212 L194,218 L182,222 L170,226 L158,228 L146,226 L134,222 L122,216 L112,208 L104,198 L98,186 L94,174 L90,162 L86,150 L80,140 L72,132 L64,126 L56,120 L50,112 L46,102 L48,90 Z"
-                fill="url(#mexicoGrad)" stroke="#27ae60" stroke-width="1.5" opacity="0.9"/>
-                <defs>
-                    <linearGradient id="mexicoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#2ecc71"/>
-                        <stop offset="50%" stop-color="#27ae60"/>
-                        <stop offset="100%" stop-color="#1e8449"/>
-                    </linearGradient>
-                </defs>
-            </svg>
-            <p class="side-label">México</p>
-        </div>
-
-        <!-- Stars on Mexico/night side -->
-        <div class="stars" id="stars"></div>
-
-        <!-- Clouds on India/day side -->
+        <!-- Clouds on day/Mexico side (left) -->
         <div class="clouds">
             <div class="cloud c1"></div>
             <div class="cloud c2"></div>
             <div class="cloud c3"></div>
+        </div>
+
+        <!-- Sun on day side (top-left area) -->
+        <div class="sun"></div>
+
+        <!-- Stars on night/India side (right) -->
+        <div class="stars" id="stars"></div>
+
+        <!-- Mexico map (LEFT - Day) -->
+        <div class="side side-left">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c8/Mexico_blank_color_map.svg" alt="Mexico Map" class="map-img map-mexico">
+        </div>
+
+        <!-- Flight Route (CENTER) -->
+        <div class="flight-center">
+            <svg class="route-svg" viewBox="0 0 300 150" preserveAspectRatio="xMidYMid meet">
+                <!-- Dashed curved path -->
+                <path d="M20,120 C60,120 80,30 150,30 C220,30 240,120 280,120" 
+                      fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" 
+                      stroke-dasharray="12,8" class="dash-path"/>
+                <!-- Small loop/circles along route -->
+                <circle cx="90" cy="55" r="8" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-dasharray="4,3"/>
+                <circle cx="210" cy="55" r="8" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-dasharray="4,3"/>
+                <!-- Location pin at start -->
+                <path d="M148,18 a6,6 0 1,0 4,0 a6,6 0 1,0 -4,0" fill="rgba(255,255,255,0.6)"/>
+                <path d="M150,25 L150,32" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+            </svg>
+            <!-- Tickets icon -->
+            <div class="tickets">🎫✈️</div>
+        </div>
+
+        <!-- India map (RIGHT - Night) -->
+        <div class="side side-right">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/11/India_States_and_UT_-_blank_map.svg" alt="India Map" class="map-img map-india">
         </div>
     </section>
 

@@ -18,140 +18,99 @@ body {
     justify-content: space-between;
     position: relative;
     overflow: hidden;
-    /* Day (India/left) to Night (Mexico/right) */
+    /* Day (Mexico/left) → Night (India/right) */
     background: linear-gradient(
         to right,
-        #87CEEB 0%,
-        #6CB4E8 15%,
-        #4A9DE0 30%,
-        #2E78C7 45%,
-        #1B3A6B 60%,
-        #0F2044 75%,
-        #0A1628 100%
+        #7EC8E3 0%,
+        #5DADE2 20%,
+        #4195C4 40%,
+        #2E6F9E 55%,
+        #1B4F72 70%,
+        #14364F 85%,
+        #0D2137 100%
     );
 }
 
-/* Sun glow on India/day side */
-.landing::before {
-    content: '';
+/* ===== SUN (top-left, day side) ===== */
+.sun {
     position: absolute;
-    top: 10%;
-    left: 5%;
-    width: 120px;
-    height: 120px;
-    background: radial-gradient(circle, #FFD700 0%, #FFA500 40%, transparent 70%);
+    top: -30px;
+    left: 10%;
+    width: 130px;
+    height: 130px;
+    background: radial-gradient(circle, #FFE066 0%, #FFCC00 40%, #FFA500 70%, transparent 72%);
     border-radius: 50%;
-    opacity: 0.8;
-    animation: sunGlow 4s ease-in-out infinite;
-}
-
-@keyframes sunGlow {
-    0%, 100% { transform: scale(1); opacity: 0.8; }
-    50% { transform: scale(1.1); opacity: 1; }
-}
-
-/* Moon on Mexico/night side */
-.landing::after {
-    content: '';
-    position: absolute;
-    top: 8%;
-    right: 8%;
-    width: 80px;
-    height: 80px;
-    background: radial-gradient(circle at 35% 35%, #f5f5dc 0%, #e8e4c9 50%, #ddd8b8 100%);
-    border-radius: 50%;
-    box-shadow: 0 0 30px rgba(245,245,220,0.4), 0 0 60px rgba(245,245,220,0.2);
-}
-
-/* ===== SIDES ===== */
-.side {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
     z-index: 2;
-    padding: 2rem;
+    animation: sunPulse 4s ease-in-out infinite;
 }
 
-.side-india {
-    padding-left: 4%;
+@keyframes sunPulse {
+    0%, 100% { transform: scale(1); opacity: 0.9; }
+    50% { transform: scale(1.08); opacity: 1; }
 }
 
-.side-mexico {
-    padding-right: 4%;
-}
-
-.map-india {
-    width: 140px;
-    height: auto;
-    filter: drop-shadow(0 4px 15px rgba(230, 126, 34, 0.4));
-    animation: mapFloat 5s ease-in-out infinite;
-}
-
-.map-mexico {
-    width: 180px;
-    height: auto;
-    filter: drop-shadow(0 4px 15px rgba(39, 174, 96, 0.4));
-    animation: mapFloat 5s ease-in-out infinite 1s;
-}
-
-@keyframes mapFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-}
-
-.side-label {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: rgba(255,255,255,0.9);
-    letter-spacing: 1px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-}
-
-/* ===== FLIGHT ROUTE ===== */
-.flight-route {
+/* ===== CLOUDS (day/left side) ===== */
+.clouds {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 50%;
-    height: 40%;
+    top: 0;
+    left: 0;
+    width: 45%;
+    height: 100%;
+    pointer-events: none;
     z-index: 3;
 }
 
-.route-svg {
-    width: 100%;
-    height: 100%;
-}
-
-.dash-path {
-    animation: dashMove 3s linear infinite;
-}
-
-@keyframes dashMove {
-    0% { stroke-dashoffset: 0; }
-    100% { stroke-dashoffset: -36; }
-}
-
-.plane {
+.cloud {
     position: absolute;
-    font-size: 2rem;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 50px;
+    animation: drift 18s ease-in-out infinite;
+}
+
+.cloud::before, .cloud::after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 50%;
+}
+
+.c1 {
+    width: 120px;
+    height: 40px;
+    top: 5%;
+    left: 20%;
+}
+.c1::before { width: 55px; height: 55px; top: -25px; left: 20px; }
+.c1::after { width: 65px; height: 65px; top: -32px; left: 50px; }
+
+.c2 {
+    width: 90px;
+    height: 30px;
     top: 15%;
-    left: 45%;
-    animation: planeMove 6s ease-in-out infinite;
-    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3));
+    left: 5%;
+    opacity: 0.7;
+    animation-delay: -6s;
+}
+.c2::before { width: 40px; height: 40px; top: -18px; left: 15px; }
+.c2::after { width: 50px; height: 50px; top: -24px; left: 38px; }
+
+.c3 {
+    width: 70px;
+    height: 24px;
+    top: 25%;
+    left: 30%;
+    opacity: 0.5;
+    animation-delay: -12s;
+}
+.c3::before { width: 32px; height: 32px; top: -14px; left: 10px; }
+.c3::after { width: 38px; height: 38px; top: -18px; left: 28px; }
+
+@keyframes drift {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(25px); }
 }
 
-@keyframes planeMove {
-    0% { top: 60%; left: 10%; transform: rotate(-30deg); }
-    25% { top: 20%; left: 30%; transform: rotate(-15deg); }
-    50% { top: 15%; left: 50%; transform: rotate(0deg); }
-    75% { top: 25%; left: 70%; transform: rotate(10deg); }
-    100% { top: 60%; left: 90%; transform: rotate(20deg); }
-}
-
-/* ===== STARS (Night/Mexico side) ===== */
+/* ===== STARS (night/right side) ===== */
 .stars {
     position: absolute;
     top: 0;
@@ -164,152 +123,138 @@ body {
 
 .star {
     position: absolute;
-    width: 3px;
-    height: 3px;
-    background: #fff;
+    background: #FFD700;
     border-radius: 50%;
     animation: twinkle 2s ease-in-out infinite alternate;
 }
 
+.star-big {
+    width: 6px;
+    height: 6px;
+    background: #FFE066;
+    box-shadow: 0 0 4px #FFE066;
+}
+
 @keyframes twinkle {
-    0% { opacity: 0.2; transform: scale(0.8); }
-    100% { opacity: 1; transform: scale(1.3); }
+    0% { opacity: 0.2; transform: scale(0.7); }
+    100% { opacity: 1; transform: scale(1.2); }
 }
 
-/* ===== CLOUDS (Day/India side) ===== */
-.clouds {
+/* ===== MAP SIDES ===== */
+.side {
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+}
+
+.side-left {
+    padding-left: 3%;
+}
+
+.side-right {
+    padding-right: 3%;
+}
+
+.map-img {
+    height: auto;
+    filter: drop-shadow(0 5px 20px rgba(0,0,0,0.3));
+    animation: mapFloat 5s ease-in-out infinite;
+}
+
+.map-mexico {
+    width: 260px;
+    opacity: 0.9;
+}
+
+.map-india {
+    width: 200px;
+    opacity: 0.85;
+    /* Tint to beige/tan like reference */
+    filter: drop-shadow(0 5px 20px rgba(0,0,0,0.3)) sepia(0.3) saturate(0.8) brightness(1.1);
+}
+
+@keyframes mapFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* ===== FLIGHT ROUTE (center) ===== */
+.flight-center {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 45%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 35%;
+    height: 50%;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.cloud {
-    position: absolute;
-    background: rgba(255,255,255,0.8);
-    border-radius: 50px;
-    animation: drift 15s ease-in-out infinite;
+.route-svg {
+    width: 100%;
+    height: auto;
 }
 
-.cloud::before, .cloud::after {
-    content: '';
-    position: absolute;
-    background: rgba(255,255,255,0.8);
-    border-radius: 50%;
+.dash-path {
+    animation: dashAnim 2s linear infinite;
 }
 
-.c1 {
-    width: 100px;
-    height: 35px;
-    top: 20%;
-    left: 15%;
-    animation-delay: 0s;
+@keyframes dashAnim {
+    0% { stroke-dashoffset: 0; }
+    100% { stroke-dashoffset: -40; }
 }
 
-.c1::before { width: 45px; height: 45px; top: -20px; left: 15px; }
-.c1::after { width: 55px; height: 55px; top: -28px; left: 40px; }
-
-.c2 {
-    width: 80px;
-    height: 28px;
-    top: 40%;
-    left: 25%;
-    animation-delay: -5s;
-    opacity: 0.7;
+.tickets {
+    font-size: 2.5rem;
+    margin-top: 0.5rem;
+    animation: ticketFloat 3s ease-in-out infinite;
+    filter: drop-shadow(0 3px 8px rgba(0,0,0,0.2));
 }
 
-.c2::before { width: 35px; height: 35px; top: -16px; left: 12px; }
-.c2::after { width: 42px; height: 42px; top: -22px; left: 32px; }
-
-.c3 {
-    width: 70px;
-    height: 24px;
-    top: 65%;
-    left: 8%;
-    animation-delay: -10s;
-    opacity: 0.5;
-}
-
-.c3::before { width: 30px; height: 30px; top: -14px; left: 10px; }
-.c3::after { width: 38px; height: 38px; top: -18px; left: 28px; }
-
-@keyframes drift {
-    0%, 100% { transform: translateX(0); }
-    50% { transform: translateX(20px); }
+@keyframes ticketFloat {
+    0%, 100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-6px) rotate(5deg); }
 }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-    .landing {
-        flex-direction: column;
-        justify-content: center;
-        gap: 2rem;
-        padding: 2rem 1rem;
-    }
-
-    .landing {
-        background: linear-gradient(
-            to bottom,
-            #87CEEB 0%,
-            #6CB4E8 15%,
-            #4A9DE0 30%,
-            #2E78C7 50%,
-            #1B3A6B 70%,
-            #0F2044 85%,
-            #0A1628 100%
-        );
-    }
-
-    .landing::before {
-        top: 3%;
-        left: 10%;
-        width: 80px;
-        height: 80px;
-    }
-
-    .landing::after {
-        bottom: 5%;
-        top: auto;
-        right: 10%;
-        width: 60px;
-        height: 60px;
-    }
-
-    .side-india { padding-left: 0; }
-    .side-mexico { padding-right: 0; }
-
-    .map-india { width: 100px; }
-    .map-mexico { width: 130px; }
-
-    .flight-route {
-        position: relative;
-        top: auto;
-        left: auto;
-        transform: none;
-        width: 80%;
-        height: 100px;
-    }
-
-    .clouds {
-        width: 100%;
-        height: 40%;
-    }
-
-    .stars {
-        width: 100%;
-        height: 50%;
-        top: 50%;
-    }
-
-    .plane { font-size: 1.5rem; }
+    .map-mexico { width: 180px; }
+    .map-india { width: 140px; }
+    .flight-center { width: 45%; }
+    .tickets { font-size: 2rem; }
+    .sun { width: 90px; height: 90px; left: 5%; }
 }
 
 @media (max-width: 480px) {
-    .map-india { width: 80px; }
-    .map-mexico { width: 110px; }
-    .side-label { font-size: 1rem; }
-    .plane { font-size: 1.2rem; }
+    .landing {
+        flex-direction: column;
+        justify-content: center;
+        gap: 1rem;
+        background: linear-gradient(
+            to bottom,
+            #7EC8E3 0%,
+            #5DADE2 25%,
+            #2E6F9E 50%,
+            #1B4F72 75%,
+            #0D2137 100%
+        );
+    }
+
+    .map-mexico { width: 140px; }
+    .map-india { width: 110px; }
+    .flight-center {
+        position: relative;
+        top: auto; left: auto;
+        transform: none;
+        width: 70%;
+        height: 80px;
+    }
+    .tickets { font-size: 1.5rem; }
+    .sun { width: 70px; height: 70px; top: -20px; left: 5%; }
+    .clouds { width: 100%; height: 35%; }
+    .stars { width: 100%; height: 45%; top: 55%; }
 }
