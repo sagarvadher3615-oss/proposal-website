@@ -1,626 +1,315 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { font-family: 'Inter', sans-serif; overflow-x: hidden; color: #333; }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-/* ========================================
-   LANDING PAGE - India to Mexico
-   ======================================== */
+body {
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+}
+
+/* ===== LANDING ===== */
 .landing {
-    min-height: 100vh;
+    width: 100vw;
+    height: 100vh;
     display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: space-between;
-    padding: 2rem 1.5rem;
     position: relative;
     overflow: hidden;
-    /* Night (India left) to Day (Mexico right) */
+    /* Day (India/left) to Night (Mexico/right) */
     background: linear-gradient(
         to right,
-        #1b2838 0%,
-        #1e3a5f 25%,
-        #2e6ea6 45%,
-        #5ba3d9 55%,
-        #87ceeb 75%,
-        #b6e3f4 100%
+        #87CEEB 0%,
+        #6CB4E8 15%,
+        #4A9DE0 30%,
+        #2E78C7 45%,
+        #1B3A6B 60%,
+        #0F2044 75%,
+        #0A1628 100%
     );
 }
 
-/* Stars overlay on left side */
+/* Sun glow on India/day side */
 .landing::before {
-    content: '✦ ✧ ★ ✦ ✧ ★ ✦ ✧ ✦ ✧ ★ ✦ ✧ ✦ ★ ✧ ✦ ✧ ★';
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, #FFD700 0%, #FFA500 40%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: sunGlow 4s ease-in-out infinite;
+}
+
+@keyframes sunGlow {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
+}
+
+/* Moon on Mexico/night side */
+.landing::after {
+    content: '';
+    position: absolute;
+    top: 8%;
+    right: 8%;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle at 35% 35%, #f5f5dc 0%, #e8e4c9 50%, #ddd8b8 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(245,245,220,0.4), 0 0 60px rgba(245,245,220,0.2);
+}
+
+/* ===== SIDES ===== */
+.side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    z-index: 2;
+    padding: 2rem;
+}
+
+.side-india {
+    padding-left: 4%;
+}
+
+.side-mexico {
+    padding-right: 4%;
+}
+
+.map-india {
+    width: 140px;
+    height: auto;
+    filter: drop-shadow(0 4px 15px rgba(230, 126, 34, 0.4));
+    animation: mapFloat 5s ease-in-out infinite;
+}
+
+.map-mexico {
+    width: 180px;
+    height: auto;
+    filter: drop-shadow(0 4px 15px rgba(39, 174, 96, 0.4));
+    animation: mapFloat 5s ease-in-out infinite 1s;
+}
+
+@keyframes mapFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.side-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.9);
+    letter-spacing: 1px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* ===== FLIGHT ROUTE ===== */
+.flight-route {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 40%;
+    z-index: 3;
+}
+
+.route-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.dash-path {
+    animation: dashMove 3s linear infinite;
+}
+
+@keyframes dashMove {
+    0% { stroke-dashoffset: 0; }
+    100% { stroke-dashoffset: -36; }
+}
+
+.plane {
+    position: absolute;
+    font-size: 2rem;
+    top: 15%;
+    left: 45%;
+    animation: planeMove 6s ease-in-out infinite;
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3));
+}
+
+@keyframes planeMove {
+    0% { top: 60%; left: 10%; transform: rotate(-30deg); }
+    25% { top: 20%; left: 30%; transform: rotate(-15deg); }
+    50% { top: 15%; left: 50%; transform: rotate(0deg); }
+    75% { top: 25%; left: 70%; transform: rotate(10deg); }
+    100% { top: 60%; left: 90%; transform: rotate(20deg); }
+}
+
+/* ===== STARS (Night/Mexico side) ===== */
+.stars {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: #fff;
+    border-radius: 50%;
+    animation: twinkle 2s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.2; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1.3); }
+}
+
+/* ===== CLOUDS (Day/India side) ===== */
+.clouds {
     position: absolute;
     top: 0;
     left: 0;
     width: 45%;
     height: 100%;
-    font-size: 0.6rem;
-    color: #ffd700;
-    word-spacing: 20px;
-    line-height: 3;
-    padding: 2rem;
-    opacity: 0.5;
     pointer-events: none;
-    overflow: hidden;
-    letter-spacing: 15px;
+    z-index: 1;
 }
 
-/* ===== TOP ROW ===== */
-.landing-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-}
-
-.land-india, .land-mexico {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.cute-moon, .cute-sun {
-    font-size: 4rem;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
-}
-
-.cute-moon { animation: gentleFloat 3s ease-in-out infinite; }
-.cute-sun { animation: gentleFloat 3s ease-in-out infinite 1s; }
-
-@keyframes gentleFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-}
-
-.land-label {
-    font-family: 'Dancing Script', cursive;
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.85);
-    text-align: center;
-    max-width: 120px;
-}
-
-/* ===== MIDDLE ROW ===== */
-.landing-middle {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 1rem;
-}
-
-.map-india, .map-mexico {
-    font-size: 4rem;
-    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.15));
-}
-
-.flight-center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    position: relative;
-}
-
-.flight-line {
-    width: 80px;
-    height: 2px;
-    border-top: 2px dashed rgba(255,255,255,0.5);
-    position: relative;
-}
-
-.flight-line::before, .flight-line::after {
-    content: '◯';
+.cloud {
     position: absolute;
-    top: -8px;
-    font-size: 0.6rem;
-    color: rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.8);
+    border-radius: 50px;
+    animation: drift 15s ease-in-out infinite;
 }
 
-.flight-line::before { left: -5px; }
-.flight-line::after { right: -5px; }
-
-.flight-ticket {
-    font-size: 2rem;
-    animation: gentleFloat 4s ease-in-out infinite 0.5s;
+.cloud::before, .cloud::after {
+    content: '';
+    position: absolute;
+    background: rgba(255,255,255,0.8);
+    border-radius: 50%;
 }
 
-/* ===== NAV RIBBONS ===== */
-.nav-ribbon {
-    font-family: 'Fredoka', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #c9a84c;
-    text-decoration: none;
-    padding: 0.5rem 2.5rem;
-    background: rgba(255,255,255,0.75);
-    border-radius: 2px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    display: inline-block;
-    position: relative;
-    transition: transform 0.2s ease, background 0.2s ease;
-    /* Rough brush stroke shape */
-    clip-path: polygon(1% 15%, 5% 0%, 96% 5%, 100% 20%, 99% 80%, 95% 100%, 4% 95%, 0% 80%);
+.c1 {
+    width: 100px;
+    height: 35px;
+    top: 20%;
+    left: 15%;
+    animation-delay: 0s;
 }
 
-.nav-ribbon:hover {
-    transform: scale(1.06);
-    background: rgba(255,255,255,0.9);
-}
+.c1::before { width: 45px; height: 45px; top: -20px; left: 15px; }
+.c1::after { width: 55px; height: 55px; top: -28px; left: 40px; }
 
-.nav-small {
-    font-size: 0.9rem;
-    padding: 0.4rem 1.8rem;
-}
-
-/* ===== BOTTOM ROW ===== */
-.landing-bottom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.bottom-left, .bottom-right {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.4rem;
-}
-
-.cute-sun-small, .cute-moon-small {
-    font-size: 3rem;
-}
-
-.cute-sun-small { animation: gentleFloat 3s ease-in-out infinite 0.5s; }
-.cute-moon-small { animation: gentleFloat 3s ease-in-out infinite 1.5s; }
-
-.nav-stack {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-/* ========================================
-   STORY INTRO
-   ======================================== */
-.story-intro {
-    min-height: 100vh;
-    background: linear-gradient(180deg, #e8734a 0%, #f4845f 30%, #f7a072 60%, #fcd5ce 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    text-align: center;
-    color: #fff;
-}
-
-.story-content {
-    max-width: 500px;
-    animation: fadeUp 1.2s ease;
-}
-
-.greeting {
-    font-size: 0.9rem;
-    margin-bottom: 2rem;
-    opacity: 0.9;
-    font-weight: 300;
-}
-
-.greeting em {
-    font-family: 'Dancing Script', cursive;
-    font-size: 1.1rem;
-}
-
-.main-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.6rem;
-    font-weight: 700;
-    line-height: 1.3;
-    margin-bottom: 3rem;
-}
-
-.title-highlight {
-    font-style: italic;
-    background: rgba(255,255,255,0.15);
-    padding: 0.2rem 0.6rem;
-    border-radius: 8px;
-}
-
-.scroll-hint {
-    font-size: 0.8rem;
+.c2 {
+    width: 80px;
+    height: 28px;
+    top: 40%;
+    left: 25%;
+    animation-delay: -5s;
     opacity: 0.7;
 }
 
-.arrow-down {
-    font-size: 1.2rem;
-    margin-top: 0.5rem;
-    animation: bounce 2s ease-in-out infinite;
+.c2::before { width: 35px; height: 35px; top: -16px; left: 12px; }
+.c2::after { width: 42px; height: 42px; top: -22px; left: 32px; }
+
+.c3 {
+    width: 70px;
+    height: 24px;
+    top: 65%;
+    left: 8%;
+    animation-delay: -10s;
+    opacity: 0.5;
 }
 
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(8px); }
+.c3::before { width: 30px; height: 30px; top: -14px; left: 10px; }
+.c3::after { width: 38px; height: 38px; top: -18px; left: 28px; }
+
+@keyframes drift {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(20px); }
 }
 
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(25px); }
-    to { opacity: 1; transform: translateY(0); }
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .landing {
+        flex-direction: column;
+        justify-content: center;
+        gap: 2rem;
+        padding: 2rem 1rem;
+    }
+
+    .landing {
+        background: linear-gradient(
+            to bottom,
+            #87CEEB 0%,
+            #6CB4E8 15%,
+            #4A9DE0 30%,
+            #2E78C7 50%,
+            #1B3A6B 70%,
+            #0F2044 85%,
+            #0A1628 100%
+        );
+    }
+
+    .landing::before {
+        top: 3%;
+        left: 10%;
+        width: 80px;
+        height: 80px;
+    }
+
+    .landing::after {
+        bottom: 5%;
+        top: auto;
+        right: 10%;
+        width: 60px;
+        height: 60px;
+    }
+
+    .side-india { padding-left: 0; }
+    .side-mexico { padding-right: 0; }
+
+    .map-india { width: 100px; }
+    .map-mexico { width: 130px; }
+
+    .flight-route {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        width: 80%;
+        height: 100px;
+    }
+
+    .clouds {
+        width: 100%;
+        height: 40%;
+    }
+
+    .stars {
+        width: 100%;
+        height: 50%;
+        top: 50%;
+    }
+
+    .plane { font-size: 1.5rem; }
 }
 
-/* ========================================
-   CONTENT SECTIONS
-   ======================================== */
-.section {
-    padding: 5rem 2rem;
-    max-width: 600px;
-    margin: 0 auto;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.section.visible { opacity: 1; transform: translateY(0); }
-
-.section-full {
-    padding: 5rem 2rem;
-    text-align: center;
-}
-
-.section-number {
-    font-family: 'Playfair Display', serif;
-    font-size: 4rem;
-    font-weight: 700;
-    color: #f4845f;
-    opacity: 0.3;
-    margin-bottom: 1rem;
-}
-
-.section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    font-weight: 700;
-    color: #2d2d2d;
-    margin-bottom: 1.5rem;
-    line-height: 1.3;
-}
-
-.section-text {
-    font-size: 0.95rem;
-    color: #555;
-    line-height: 1.8;
-    margin-bottom: 1.5rem;
-    font-weight: 300;
-}
-
-.meet-names {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-top: 2rem;
-    font-family: 'Dancing Script', cursive;
-    font-size: 1.5rem;
-    color: #e8734a;
-}
-
-.names-arrow { animation: pulse 2s ease-in-out infinite; }
-
-@keyframes pulse {
-    0%, 100% { opacity: 0.7; }
-    50% { opacity: 1; }
-}
-
-/* Distance */
-.section-distance {
-    background: linear-gradient(180deg, #fff 0%, #fff5f3 50%, #ffecd2 100%);
-    padding: 6rem 2rem;
-}
-
-.distance-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    font-weight: 400;
-    color: #444;
-    line-height: 1.5;
-    max-width: 500px;
-    margin: 0 auto;
-}
-
-.pink { color: #e8734a; font-weight: 700; font-size: 2.2rem; }
-
-/* Song */
-.song-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    color: #2d2d2d;
-}
-
-.song-title em { color: #e8734a; }
-
-.song-text {
-    font-size: 0.9rem;
-    color: #666;
-    line-height: 1.8;
-    margin-bottom: 2rem;
-    font-weight: 300;
-}
-
-.song-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-    margin-bottom: 2rem;
-}
-
-.song-card {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    background: linear-gradient(135deg, #fff5f3, #ffecd2);
-    padding: 1rem 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(232,115,74,0.1);
-}
-
-.song-icon { font-size: 1.3rem; color: #e8734a; }
-
-.waveform {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 3px;
-    height: 40px;
-    margin-bottom: 1.5rem;
-}
-
-.waveform span {
-    width: 3px;
-    background: linear-gradient(180deg, #e8734a, #f7a072);
-    border-radius: 3px;
-    animation: wave 1.2s ease-in-out infinite;
-}
-
-.waveform span:nth-child(1) { height: 12px; animation-delay: 0s; }
-.waveform span:nth-child(2) { height: 22px; animation-delay: 0.08s; }
-.waveform span:nth-child(3) { height: 30px; animation-delay: 0.16s; }
-.waveform span:nth-child(4) { height: 16px; animation-delay: 0.24s; }
-.waveform span:nth-child(5) { height: 26px; animation-delay: 0.32s; }
-.waveform span:nth-child(6) { height: 34px; animation-delay: 0.4s; }
-.waveform span:nth-child(7) { height: 18px; animation-delay: 0.48s; }
-.waveform span:nth-child(8) { height: 28px; animation-delay: 0.56s; }
-.waveform span:nth-child(9) { height: 14px; animation-delay: 0.64s; }
-.waveform span:nth-child(10) { height: 24px; animation-delay: 0.72s; }
-.waveform span:nth-child(11) { height: 32px; animation-delay: 0.8s; }
-.waveform span:nth-child(12) { height: 20px; animation-delay: 0.88s; }
-.waveform span:nth-child(13) { height: 30px; animation-delay: 0.96s; }
-.waveform span:nth-child(14) { height: 15px; animation-delay: 1.04s; }
-.waveform span:nth-child(15) { height: 25px; animation-delay: 1.12s; }
-
-@keyframes wave {
-    0%, 100% { transform: scaleY(1); }
-    50% { transform: scaleY(0.4); }
-}
-
-.song-quote {
-    font-family: 'Dancing Script', cursive;
-    font-size: 1.1rem;
-    color: #e8734a;
-}
-
-/* Moments */
-.section-moments {
-    background: linear-gradient(180deg, #fff 0%, #f0fffe 50%, #e0f7fa 100%);
-}
-
-.moments-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    color: #2d2d2d;
-    margin-bottom: 3rem;
-}
-
-.moments-title .saved { color: #e8734a; text-decoration: underline; }
-.moments-title em { font-family: 'Dancing Script', cursive; font-size: 2rem; }
-
-.moments-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    align-items: center;
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-.moment-card { width: 100%; }
-
-.moment-img {
-    width: 100%;
-    height: 200px;
-    border-radius: 16px;
-    margin-bottom: 0.8rem;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-}
-
-.grad-1 { background: linear-gradient(135deg, #ffecd2, #fcb69f); }
-.grad-2 { background: linear-gradient(135deg, #a1c4fd, #c2e9fb); }
-.grad-3 { background: linear-gradient(135deg, #fbc2eb, #a6c1ee); }
-
-.moment-cap {
-    font-family: 'Dancing Script', cursive;
-    font-size: 1.1rem;
-    color: #666;
-}
-
-/* Things */
-.note-box {
-    margin-top: 2rem;
-    padding: 1.5rem;
-    background: linear-gradient(135deg, #fff5f3, #ffecd2);
-    border-radius: 12px;
-    border-left: 4px solid #e8734a;
-}
-
-.note-box p { font-size: 0.9rem; color: #888; font-style: italic; }
-
-/* Letter */
-.letter-heading {
-    font-family: 'Dancing Script', cursive;
-    font-size: 1.3rem;
-    color: #e8734a;
-    margin-bottom: 2rem;
-    text-align: center;
-}
-
-.envelope {
-    width: 240px;
-    height: 150px;
-    margin: 0 auto 2rem;
-    position: relative;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.envelope:hover { transform: scale(1.05); }
-
-.env-body {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(145deg, #ffecd2, #fcb69f);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 6px 20px rgba(232,115,74,0.2);
-}
-
-.env-flap {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    height: 75px;
-    background: linear-gradient(180deg, #f4845f, #f7a072);
-    clip-path: polygon(0 0, 50% 100%, 100% 0);
-    transition: transform 0.5s ease;
-    transform-origin: top center;
-    z-index: 2;
-}
-
-.envelope.opened .env-flap { transform: rotateX(180deg); }
-
-.tap-label {
-    font-family: 'Dancing Script', cursive;
-    font-size: 1rem;
-    color: #e8734a;
-}
-
-.letter-reveal {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.8s ease, opacity 0.6s ease;
-    opacity: 0;
-}
-
-.letter-reveal.open { max-height: 400px; opacity: 1; }
-
-.letter-paper {
-    background: #fffef9;
-    border: 1px solid #f0e6d3;
-    border-radius: 12px;
-    padding: 2rem;
-    margin-top: 1rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    text-align: left;
-}
-
-.letter-paper p {
-    font-size: 0.95rem;
-    line-height: 1.8;
-    color: #555;
-    margin-bottom: 1rem;
-    font-weight: 300;
-}
-
-.letter-paper em { font-family: 'Dancing Script', cursive; font-size: 1.2rem; color: #e8734a; }
-
-/* Proposal */
-.section-proposal {
-    background: linear-gradient(180deg, #fff 0%, #fff5f3 30%, #ffecd2 60%, #fcb69f 100%);
-    padding: 6rem 2rem;
-}
-
-.pre-question { font-size: 0.9rem; color: #888; margin-bottom: 1rem; }
-.pre-question em { font-family: 'Dancing Script', cursive; color: #e8734a; }
-
-.big-question {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
-    color: #2d2d2d;
-    margin-bottom: 3rem;
-    line-height: 1.3;
-}
-
-.yes-btn {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 600;
-    padding: 1rem 3rem;
-    background: linear-gradient(135deg, #e8734a, #f4845f);
-    color: #fff;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    box-shadow: 0 8px 25px rgba(232,115,74,0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.yes-btn:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 12px 35px rgba(232,115,74,0.4);
-}
-
-.confetti-box {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none;
-    z-index: 1000;
-}
-
-.confetti-piece {
-    position: absolute;
-    width: 10px; height: 10px;
-    border-radius: 2px;
-    animation: fall 3s ease-out forwards;
-}
-
-@keyframes fall {
-    0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
-}
-
-/* Footer */
-.site-footer {
-    text-align: center;
-    padding: 3rem 2rem;
-    background: #2d2d2d;
-    color: #fff;
-}
-
-.site-footer p { font-size: 0.9rem; opacity: 0.8; }
-.site-footer em { font-family: 'Dancing Script', cursive; font-size: 1.1rem; color: #f7a072; }
-
-/* ========================================
-   RESPONSIVE
-   ======================================== */
 @media (max-width: 480px) {
-    .cute-moon, .cute-sun { font-size: 3rem; }
-    .cute-sun-small, .cute-moon-small { font-size: 2.2rem; }
-    .map-india, .map-mexico { font-size: 3rem; }
-    .nav-ribbon { font-size: 1rem; padding: 0.4rem 1.8rem; letter-spacing: 2px; }
-    .nav-small { font-size: 0.75rem; padding: 0.3rem 1.2rem; }
-    .main-title { font-size: 2rem; }
-    .big-question { font-size: 2rem; }
-    .flight-ticket { font-size: 1.5rem; }
-    .land-label { font-size: 0.7rem; }
+    .map-india { width: 80px; }
+    .map-mexico { width: 110px; }
+    .side-label { font-size: 1rem; }
+    .plane { font-size: 1.2rem; }
 }

@@ -6,206 +6,67 @@
     <title>Saga :: M. Amor</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Dancing+Script:wght@400;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-    <!-- ===== LANDING PAGE ===== -->
-    <section class="landing" id="landing">
-        <!-- Top Row: Moon + START + Sun -->
-        <div class="landing-top">
-            <div class="land-india">
-                <div class="cute-moon">🌙</div>
-                <p class="land-label">Hu tane prem karu chhu</p>
-            </div>
-            <a href="#story" class="nav-ribbon">START</a>
-            <div class="land-mexico">
-                <div class="cute-sun">🌞</div>
-                <p class="land-label">Te amo</p>
-            </div>
+    <section class="landing">
+        <!-- India side (Day) -->
+        <div class="side side-india">
+            <svg class="map-india" viewBox="0 0 300 350" xmlns="http://www.w3.org/2000/svg">
+                <path d="M152,8 L168,10 L180,18 L190,12 L198,18 L206,16 L218,22 L228,20 L236,28 L244,26 L252,32 L248,42 L240,48 L244,58 L250,66 L256,62 L262,68 L258,78 L250,82 L246,92 L250,100 L244,108 L238,104 L230,110 L224,120 L218,116 L210,122 L204,132 L198,128 L190,136 L184,146 L178,142 L170,150 L164,160 L158,156 L152,166 L146,176 L140,172 L134,182 L128,192 L122,188 L116,198 L110,208 L104,204 L98,214 L92,224 L88,220 L84,228 L80,236 L76,232 L72,240 L68,248 L72,256 L78,260 L84,268 L90,272 L96,278 L102,274 L108,280 L114,276 L120,272 L126,266 L132,260 L138,254 L142,248 L148,242 L154,236 L158,230 L162,224 L168,218 L172,210 L178,202 L184,194 L188,186 L192,178 L196,170 L200,162 L204,154 L208,146 L212,138 L216,130 L218,122 L214,114 L208,108 L202,102 L196,96 L190,90 L184,84 L178,78 L172,72 L166,66 L160,58 L154,50 L150,42 L146,34 L148,26 L150,18 Z" 
+                fill="url(#indiaGrad)" stroke="#e67e22" stroke-width="1.5" opacity="0.9"/>
+                <defs>
+                    <linearGradient id="indiaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#f39c12"/>
+                        <stop offset="50%" stop-color="#e67e22"/>
+                        <stop offset="100%" stop-color="#d35400"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+            <p class="side-label">India</p>
         </div>
 
-        <!-- Middle: Maps + Flight -->
-        <div class="landing-middle">
-            <div class="map-india">🇮🇳</div>
-            <div class="flight-center">
-                <div class="flight-line"></div>
-                <div class="flight-ticket">✈️🎫</div>
-            </div>
-            <div class="map-mexico">🇲🇽</div>
+        <!-- Flight Route -->
+        <div class="flight-route">
+            <svg class="route-svg" viewBox="0 0 400 200" preserveAspectRatio="none">
+                <path d="M30,150 C100,150 120,40 200,40 C280,40 300,150 370,150" 
+                      fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-dasharray="10,8" class="dash-path"/>
+                <!-- Small circles along the path -->
+                <circle cx="80" cy="100" r="3" fill="rgba(255,255,255,0.3)"/>
+                <circle cx="140" cy="55" r="3" fill="rgba(255,255,255,0.3)"/>
+                <circle cx="260" cy="55" r="3" fill="rgba(255,255,255,0.3)"/>
+                <circle cx="320" cy="100" r="3" fill="rgba(255,255,255,0.3)"/>
+            </svg>
+            <div class="plane">✈</div>
         </div>
 
-        <!-- Bottom: Navigation -->
-        <div class="landing-bottom">
-            <div class="bottom-left">
-                <div class="cute-sun-small">🌞</div>
-                <p class="land-label">Te amo</p>
-            </div>
-            <div class="nav-stack">
-                <a href="#sectionMeet" class="nav-ribbon">STORY</a>
-                <a href="#sectionSong" class="nav-ribbon">SONGS</a>
-                <a href="#sectionLetter" class="nav-ribbon">LETTERS</a>
-                <a href="#sectionProposal" class="nav-ribbon">EXTRA</a>
-                <a href="#landing" class="nav-ribbon nav-small">HOME</a>
-            </div>
-            <div class="bottom-right">
-                <div class="cute-moon-small">🌙</div>
-                <p class="land-label">Hu tane prem karu chhu</p>
-            </div>
+        <!-- Mexico side (Night) -->
+        <div class="side side-mexico">
+            <svg class="map-mexico" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50,80 L70,72 L90,68 L110,60 L130,56 L150,52 L170,48 L190,50 L210,52 L230,56 L250,60 L270,66 L290,72 L310,80 L320,90 L325,102 L328,114 L326,126 L320,138 L312,148 L302,156 L290,162 L278,170 L266,178 L254,186 L242,194 L230,200 L218,206 L206,212 L194,218 L182,222 L170,226 L158,228 L146,226 L134,222 L122,216 L112,208 L104,198 L98,186 L94,174 L90,162 L86,150 L80,140 L72,132 L64,126 L56,120 L50,112 L46,102 L48,90 Z"
+                fill="url(#mexicoGrad)" stroke="#27ae60" stroke-width="1.5" opacity="0.9"/>
+                <defs>
+                    <linearGradient id="mexicoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#2ecc71"/>
+                        <stop offset="50%" stop-color="#27ae60"/>
+                        <stop offset="100%" stop-color="#1e8449"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+            <p class="side-label">México</p>
         </div>
-    </section>
 
-    <!-- ===== STORY INTRO ===== -->
-    <section class="story-intro" id="story">
-        <div class="story-content">
-            <p class="greeting">from <em>Jodu</em>, with love to my <em>M. Amor</em> ♥</p>
-            <h1 class="main-title">
-                Hola,<br>
-                there's something<br>
-                <span class="title-highlight">I've kept in my<br>heart...</span>
-            </h1>
-            <div class="scroll-hint">
-                <span>scroll gently</span>
-                <div class="arrow-down">↓</div>
-            </div>
+        <!-- Stars on Mexico/night side -->
+        <div class="stars" id="stars"></div>
+
+        <!-- Clouds on India/day side -->
+        <div class="clouds">
+            <div class="cloud c1"></div>
+            <div class="cloud c2"></div>
+            <div class="cloud c3"></div>
         </div>
     </section>
-
-    <!-- Section 01: How We Met -->
-    <section class="section section-meet" id="sectionMeet">
-        <div class="section-number">01</div>
-        <h2 class="section-title">Two strangers, one<br>screen</h2>
-        <p class="section-text">
-            Met on Google — a split out of 7 billion<br>
-            among millions of people... a thousand<br>
-            random conversations, and somehow we still<br>
-            found each other.
-        </p>
-        <p class="section-text">
-            I don't believe in fate but what I do<br>
-            believe? Iya't kapalaran ka nag o, ang sabi ng<br>
-            may isip.
-        </p>
-        <div class="meet-names">
-            <span>Ahmar</span>
-            <span class="names-arrow">↔</span>
-            <span>Jodu</span>
-        </div>
-    </section>
-
-    <!-- Distance Section -->
-    <section class="section-full section-distance">
-        <h2 class="distance-title">Distance means so little<br>when someone means so<br><span class="pink">much.</span></h2>
-    </section>
-
-    <!-- Song Section -->
-    <section class="section section-song" id="sectionSong">
-        <h2 class="song-title">The song <em>for you</em></h2>
-        <p class="song-text">
-            There is a song that your love traced in my life,<br>
-            played on repeat, tattooed in heartbeats — a<br>
-            melody so familiar it replaced my own heartbeat.
-        </p>
-        <div class="song-cards">
-            <div class="song-card">
-                <span class="song-icon">♫</span>
-                <span>Chi Song</span>
-            </div>
-            <div class="song-card">
-                <span class="song-icon">♫</span>
-                <span>Headband</span>
-            </div>
-        </div>
-        <div class="waveform">
-            <span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span>
-        </div>
-        <p class="song-quote">para sayo ang kanta na 'to, alam mo yun, di ba</p>
-    </section>
-
-    <!-- Section 02: Ocean -->
-    <section class="section section-ocean">
-        <div class="section-number">02</div>
-        <h2 class="section-title">An ocean and a half</h2>
-        <p class="section-text">
-            And in between us, I'm endless. Between us,<br>
-            about 7,628 kilometers of air, ocean, and time<br>
-            zones — you're 6 hours behind me, asleep while<br>
-            I'm awake.
-        </p>
-        <p class="section-text">
-            yet a distance didn't stop us from holding each<br>
-            other in another way.
-        </p>
-    </section>
-
-    <!-- Moments -->
-    <section class="section-full section-moments">
-        <h2 class="moments-title">little moments, <span class="saved">saved</span><br><em>forever</em></h2>
-        <div class="moments-grid">
-            <div class="moment-card">
-                <div class="moment-img grad-1"></div>
-                <p class="moment-cap"><em>the first goodnight</em></p>
-            </div>
-            <div class="moment-card">
-                <div class="moment-img grad-2"></div>
-                <p class="moment-cap"><em>your sunrise, my sunset</em></p>
-            </div>
-            <div class="moment-card">
-                <div class="moment-img grad-3"></div>
-                <p class="moment-cap"><em>hi, dimadey</em></p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Little Things -->
-    <section class="section section-things">
-        <div class="section-number">04</div>
-        <h2 class="section-title">The little things</h2>
-        <p class="section-text">
-            The way you type what you're thinking. Your<br>
-            weird typos, mga random rants about the day. I<br>
-            started paying attention to the tiniest — I memorize<br>
-            the littlest details I know about you.
-        </p>
-        <div class="note-box">
-            <p><em>not a Pinterest man I know I said</em></p>
-        </div>
-    </section>
-
-    <!-- Letter -->
-    <section class="section section-letter" id="sectionLetter">
-        <h3 class="letter-heading">a gift & a letter</h3>
-        <div class="envelope" id="envelope">
-            <div class="env-flap"></div>
-            <div class="env-body">
-                <p class="tap-label">tap to open</p>
-            </div>
-        </div>
-        <div class="letter-reveal" id="letterReveal">
-            <div class="letter-paper">
-                <p>My dearest M. Amor,</p>
-                <p>Every moment with you feels like a dream I never want to wake up from. You've shown me that love knows no distance, no timezone, no boundary.</p>
-                <p>You are my sunrise and my sunset, my first thought and my last goodnight. I want to spend forever making you smile.</p>
-                <p>With all my love,<br><em>Jodu</em></p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Proposal -->
-    <section class="section-full section-proposal" id="sectionProposal">
-        <p class="pre-question">will you be mine, <em>forever?</em></p>
-        <h2 class="big-question">Will you be mine<br>— forever?</h2>
-        <button class="yes-btn" id="yesBtn">Yes, always 💛</button>
-        <div class="confetti-box" id="confettiBox"></div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="site-footer">
-        <p>from <em>Jodu</em>, with all of my heart ❤</p>
-    </footer>
 
     <script src="script.js"></script>
 </body>
