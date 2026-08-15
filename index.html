@@ -1,69 +1,1087 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saga :: M. Amor</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Favorite Person ❤️</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=Dancing+Script:wght@500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'DM Sans',sans-serif;
+    background:#071b2c;
+    color:#fff;
+    overflow-x:hidden;
+}
+
+/* =========================
+   LOADING SCREEN
+========================= */
+
+#loader{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    background:linear-gradient(145deg,#8eddea,#214f72);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    transition:1s;
+}
+
+.loader-heart{
+    font-size:70px;
+    animation:heartbeat 1.2s infinite;
+}
+
+#loader h1{
+    margin-top:20px;
+    font-family:'Dancing Script',cursive;
+    font-size:42px;
+}
+
+#loader p{
+    margin-top:10px;
+    opacity:.8;
+}
+
+@keyframes heartbeat{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.25)}
+}
+
+/* =========================
+   GENERAL
+========================= */
+
+section{
+    position:relative;
+    min-height:100vh;
+    padding:80px 20px;
+    overflow:hidden;
+}
+
+.container{
+    max-width:1050px;
+    margin:auto;
+}
+
+.script{
+    font-family:'Dancing Script',cursive;
+}
+
+.serif{
+    font-family:'Cormorant Garamond',serif;
+}
+
+.section-title{
+    font-family:'Dancing Script',cursive;
+    font-size:52px;
+    text-align:center;
+    margin-bottom:15px;
+}
+
+.section-subtitle{
+    text-align:center;
+    opacity:.8;
+    max-width:600px;
+    margin:0 auto 50px;
+}
+
+/* =========================
+   FLOATING PARTICLES
+========================= */
+
+.particle{
+    position:fixed;
+    pointer-events:none;
+    z-index:20;
+    animation:floatUp linear forwards;
+}
+
+@keyframes floatUp{
+    from{
+        transform:translateY(100vh) rotate(0deg);
+        opacity:0;
+    }
+    15%{opacity:1}
+    to{
+        transform:translateY(-120px) rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:100svh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background:
+        radial-gradient(circle at 20% 20%,rgba(255,255,255,.3),transparent 20%),
+        radial-gradient(circle at 80% 30%,rgba(255,255,255,.2),transparent 25%),
+        linear-gradient(150deg,#a5e7f0,#3f7898 55%,#122f48);
+}
+
+.cloud{
+    position:absolute;
+    font-size:80px;
+    opacity:.45;
+    animation:cloudMove 20s linear infinite;
+}
+
+.cloud.one{
+    top:10%;
+    left:-100px;
+}
+
+.cloud.two{
+    top:30%;
+    right:-100px;
+    animation-delay:5s;
+}
+
+@keyframes cloudMove{
+    from{transform:translateX(0)}
+    to{transform:translateX(120vw)}
+}
+
+.moon{
+    position:absolute;
+    top:55px;
+    right:40px;
+    width:100px;
+    height:100px;
+    background:#e9f2ef;
+    border-radius:50%;
+    box-shadow:0 0 50px rgba(255,255,255,.5);
+}
+
+.moon:after{
+    content:'';
+    position:absolute;
+    width:85px;
+    height:85px;
+    background:#315e78;
+    border-radius:50%;
+    left:-15px;
+    top:-5px;
+}
+
+.hero-content{
+    position:relative;
+    z-index:3;
+    max-width:800px;
+}
+
+.small-intro{
+    letter-spacing:4px;
+    text-transform:uppercase;
+    font-size:12px;
+    opacity:.8;
+}
+
+.hero h1{
+    font-family:'Dancing Script',cursive;
+    font-size:clamp(65px,15vw,130px);
+    line-height:.9;
+    margin:25px 0;
+    text-shadow:0 8px 25px rgba(0,0,0,.2);
+}
+
+.hero h2{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:400;
+    font-size:clamp(22px,5vw,38px);
+}
+
+.start-btn{
+    margin-top:40px;
+    border:1px solid rgba(255,255,255,.6);
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(10px);
+    color:white;
+    padding:16px 35px;
+    border-radius:50px;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.start-btn:hover{
+    transform:translateY(-5px);
+    background:rgba(255,255,255,.25);
+}
+
+/* =========================
+   NAV
+========================= */
+
+.nav{
+    position:fixed;
+    z-index:100;
+    bottom:15px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    gap:5px;
+    padding:7px;
+    background:rgba(5,22,36,.75);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:50px;
+}
+
+.nav a{
+    color:white;
+    text-decoration:none;
+    width:40px;
+    height:40px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:50%;
+    font-size:18px;
+}
+
+.nav a:hover{
+    background:rgba(255,255,255,.15);
+}
+
+/* =========================
+   STORY
+========================= */
+
+.story{
+    background:
+        radial-gradient(circle at 10% 10%,#8bdde7,transparent 30%),
+        linear-gradient(180deg,#4e8ca5,#142d44);
+}
+
+.timeline{
+    max-width:750px;
+    margin:auto;
+    position:relative;
+}
+
+.timeline:before{
+    content:'';
+    position:absolute;
+    left:50%;
+    top:0;
+    bottom:0;
+    width:2px;
+    background:rgba(255,255,255,.25);
+}
+
+.story-card{
+    width:45%;
+    padding:25px;
+    margin:50px 0;
+    border-radius:25px;
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.15);
+    backdrop-filter:blur(10px);
+}
+
+.story-card:nth-child(even){
+    margin-left:55%;
+}
+
+.story-card h3{
+    font-family:'Dancing Script',cursive;
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.story-card p{
+    line-height:1.8;
+    opacity:.85;
+}
+
+/* =========================
+   MEMORIES
+========================= */
+
+.memories{
+    background:#f4e6d0;
+    color:#473b36;
+}
+
+.memories .section-title{
+    color:#8b4f57;
+}
+
+.polaroids{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.polaroid{
+    background:white;
+    padding:12px 12px 30px;
+    box-shadow:0 15px 30px rgba(60,40,20,.15);
+    transform:rotate(-2deg);
+    transition:.4s;
+}
+
+.polaroid:nth-child(2){
+    transform:rotate(3deg);
+}
+
+.polaroid:nth-child(3){
+    transform:rotate(-4deg);
+}
+
+.polaroid:hover{
+    transform:rotate(0) translateY(-10px) scale(1.03);
+}
+
+.photo{
+    height:250px;
+    background:linear-gradient(135deg,#d6e9e8,#e9b7b0);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:55px;
+}
+
+.polaroid p{
+    font-family:'Dancing Script',cursive;
+    text-align:center;
+    font-size:25px;
+    margin-top:12px;
+}
+
+/* =========================
+   SONGS
+========================= */
+
+.songs{
+    background:linear-gradient(180deg,#152c45,#071522);
+}
+
+.song-card{
+    max-width:600px;
+    margin:auto;
+    padding:30px;
+    border-radius:30px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.12);
+    text-align:center;
+}
+
+.album{
+    width:180px;
+    height:180px;
+    margin:auto;
+    border-radius:50%;
+    background:linear-gradient(135deg,#f8c9d0,#7ab7c5);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:60px;
+    box-shadow:0 0 40px rgba(255,255,255,.15);
+    animation:spin 12s linear infinite;
+}
+
+@keyframes spin{
+    to{transform:rotate(360deg)}
+}
+
+.song-card h3{
+    font-family:'Dancing Script',cursive;
+    font-size:35px;
+    margin-top:25px;
+}
+
+.music-btn{
+    margin-top:20px;
+    padding:13px 28px;
+    border:0;
+    border-radius:30px;
+    background:#fff;
+    color:#172b3d;
+    cursor:pointer;
+}
+
+/* =========================
+   LETTER
+========================= */
+
+.letter{
+    background:#b8e8ed;
+    color:#39454b;
+}
+
+.envelope{
+    width:min(90%,500px);
+    height:300px;
+    margin:70px auto 30px;
+    position:relative;
+    cursor:pointer;
+    perspective:1000px;
+}
+
+.envelope-body{
+    position:absolute;
+    inset:0;
+    background:#f6e9d6;
+    border-radius:5px;
+    box-shadow:0 20px 40px rgba(0,0,0,.2);
+}
+
+.flap{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:#ead8c0;
+    clip-path:polygon(0 0,50% 52%,100% 0);
+    transform-origin:top;
+    transition:1s;
+    z-index:3;
+}
+
+.letter-paper{
+    position:absolute;
+    background:#fffdf7;
+    color:#5d5046;
+    width:88%;
+    height:230px;
+    left:6%;
+    top:25px;
+    padding:25px;
+    transition:1s;
+    z-index:2;
+    overflow:hidden;
+}
+
+.envelope.open .flap{
+    transform:rotateX(180deg);
+}
+
+.envelope.open .letter-paper{
+    transform:translateY(-120px);
+    height:340px;
+}
+
+.letter-paper h3{
+    font-family:'Dancing Script',cursive;
+    font-size:30px;
+    margin-bottom:15px;
+}
+
+.letter-paper p{
+    line-height:1.7;
+}
+
+/* =========================
+   PROPOSAL
+========================= */
+
+.proposal{
+    min-height:100svh;
+    background:
+        radial-gradient(circle at center,rgba(255,100,150,.15),transparent 35%),
+        #160b18;
+    display:flex;
+    align-items:center;
+    text-align:center;
+}
+
+.proposal-content{
+    max-width:800px;
+    margin:auto;
+}
+
+.ring{
+    font-size:100px;
+    animation:ringFloat 2s ease-in-out infinite;
+}
+
+@keyframes ringFloat{
+    50%{transform:translateY(-15px) rotate(5deg)}
+}
+
+.proposal h2{
+    font-family:'Dancing Script',cursive;
+    font-size:clamp(60px,13vw,110px);
+    color:#ffd5df;
+}
+
+.proposal p{
+    font-family:'Cormorant Garamond',serif;
+    font-size:25px;
+    line-height:1.6;
+    max-width:650px;
+    margin:20px auto;
+}
+
+.buttons{
+    margin-top:40px;
+    display:flex;
+    justify-content:center;
+    gap:20px;
+}
+
+.yes{
+    padding:16px 45px;
+    border:0;
+    border-radius:50px;
+    background:#ff6d91;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+    box-shadow:0 10px 30px rgba(255,80,120,.3);
+}
+
+.no{
+    padding:16px 35px;
+    border-radius:50px;
+    background:transparent;
+    color:white;
+    border:1px solid rgba(255,255,255,.3);
+    cursor:pointer;
+}
+
+/* =========================
+   FINAL
+========================= */
+
+.final{
+    background:linear-gradient(180deg,#160b18,#02070d);
+    text-align:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.final h2{
+    font-family:'Dancing Script',cursive;
+    font-size:clamp(60px,14vw,130px);
+    color:#ffd7e1;
+}
+
+.final p{
+    font-family:'Cormorant Garamond',serif;
+    font-size:25px;
+    max-width:600px;
+    line-height:1.7;
+}
+
+.final-heart{
+    font-size:80px;
+    margin:30px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:700px){
+
+    section{
+        padding:70px 18px;
+    }
+
+    .section-title{
+        font-size:44px;
+    }
+
+    .timeline:before{
+        left:10px;
+    }
+
+    .story-card,
+    .story-card:nth-child(even){
+        width:calc(100% - 30px);
+        margin:35px 0 35px 30px;
+    }
+
+    .polaroids{
+        grid-template-columns:1fr;
+        max-width:350px;
+        margin:auto;
+    }
+
+    .photo{
+        height:300px;
+    }
+
+    .nav{
+        max-width:95%;
+    }
+
+    .nav a{
+        width:35px;
+        height:35px;
+        font-size:15px;
+    }
+
+    .letter-paper{
+        font-size:13px;
+    }
+
+    .birthday-message h2{
+        font-size:52px;
+    }
+
+    .buttons{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .yes,.no{
+        width:220px;
+    }
+}
+</style>
 </head>
+
 <body>
-    <section class="landing">
-        <!-- Clouds on day/India side (left) -->
-        <div class="clouds">
-            <div class="cloud c1"></div>
-            <div class="cloud c2"></div>
-            <div class="cloud c3"></div>
+
+<!-- =========================
+     LOADER
+========================= -->
+
+<div id="loader">
+    <div class="loader-heart">❤️</div>
+    <h1>Something made with love...</h1>
+    <p>For someone very special</p>
+</div>
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav class="nav">
+    <a href="#home">🏠</a>
+    <a href="#story">📖</a>
+    <a href="#memories">📸</a>
+    <a href="#songs">🎵</a>
+    <a href="#letter">💌</a>
+    <a href="#proposal">💍</a>
+</nav>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero" id="home">
+
+    <div class="cloud one">☁️</div>
+    <div class="cloud two">☁️</div>
+    <div class="moon"></div>
+
+    <div class="hero-content">
+
+        <div class="small-intro">
+            A little website made especially for you
         </div>
 
-        <!-- Sun on day side (top-left) -->
-        <div class="sun"></div>
+        <h1>
+            Hola,<br>
+            M. Amor
+        </h1>
 
-        <!-- Stars on night/Mexico side (right) -->
-        <div class="stars" id="stars"></div>
+        <h2>
+            There's something I've kept in my heart...
+        </h2>
 
-        <!-- Moon on night side (top-right) -->
-        <div class="moon"></div>
+        <button class="start-btn"
+                onclick="document.querySelector('#story').scrollIntoView()">
+            ✨ Start Our Story
+        </button>
 
-        <!-- India map (LEFT - Day) -->
-        <div class="side side-left">
-            <img src="india.svg" alt="India" class="map-img map-india">
-        </div>
+    </div>
 
-        <!-- Flight Route (CENTER) -->
-        <div class="flight-center">
-            <svg class="route-svg" viewBox="0 0 300 160" preserveAspectRatio="xMidYMid meet">
-                <path d="M10,130 C50,130 70,25 150,25 C230,25 250,130 290,130" 
-                      fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2.5" 
-                      stroke-dasharray="12,8" class="dash-path"/>
-                <!-- Small loops -->
-                <circle cx="85" cy="52" r="10" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2" stroke-dasharray="5,4"/>
-                <circle cx="215" cy="52" r="10" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2" stroke-dasharray="5,4"/>
-            </svg>
-            <!-- Ticket SVG icon -->
-            <div class="tickets">
-                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="4" y="18" width="56" height="28" rx="4" fill="white" opacity="0.85"/>
-                    <rect x="4" y="18" width="56" height="28" rx="4" stroke="white" stroke-width="1"/>
-                    <line x1="44" y1="18" x2="44" y2="46" stroke="#aaa" stroke-dasharray="3,2"/>
-                    <circle cx="20" cy="32" r="6" fill="#87CEEB"/>
-                    <path d="M18,30 L22,30 L20,34 Z" fill="white"/>
-                    <rect x="30" y="26" width="10" height="2" rx="1" fill="#ccc"/>
-                    <rect x="30" y="30" width="8" height="2" rx="1" fill="#ccc"/>
-                    <rect x="30" y="34" width="12" height="2" rx="1" fill="#ccc"/>
-                    <text x="48" y="35" font-size="10" fill="#555" font-family="sans-serif">&#9992;</text>
-                </svg>
+</section>
+
+
+<!-- =========================
+     STORY
+========================= -->
+
+<section class="story" id="story">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Our Little Story
+        </h2>
+
+        <p class="section-subtitle">
+            Two strangers, one screen. Among 7 billion people,
+            somehow we still found each other.
+        </p>
+
+        <div class="timeline">
+
+            <div class="story-card">
+                <h3>Two Strangers 🌱</h3>
+                <p>
+                    Met on Google — a split out of 7 billion among millions 
+                    of people... a thousand random conversations, and somehow 
+                    we still found each other.
+                </p>
             </div>
+
+            <div class="story-card">
+                <h3>An Ocean & A Half 🌊</h3>
+                <p>
+                    About 14,000 kilometers of air, ocean, and time zones. 
+                    India to Mexico — you're hours behind me, asleep while 
+                    I'm awake. Yet distance didn't stop us.
+                </p>
+            </div>
+
+            <div class="story-card">
+                <h3>The Little Things 🌸</h3>
+                <p>
+                    The way you type what you're thinking. Your weird typos, 
+                    random rants about the day. I started paying attention 
+                    to the tiniest details about you.
+                </p>
+            </div>
+
+            <div class="story-card">
+                <h3>And Now... ✨</h3>
+                <p>
+                    Distance means so little when someone means so much.
+                    Here I am, still choosing you, still thinking about you,
+                    and still hoping our story has many more chapters.
+                </p>
+            </div>
+
         </div>
 
-        <!-- Mexico map (RIGHT - Night) -->
-        <div class="side side-right">
-            <img src="mexico.svg" alt="Mexico" class="map-img map-mexico">
-        </div>
-    </section>
+    </div>
 
-    <script src="script.js"></script>
+</section>
+
+
+<!-- =========================
+     MEMORIES
+========================= -->
+
+<section class="memories" id="memories">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Little Moments, Saved Forever
+        </h2>
+
+        <p class="section-subtitle">
+            These small moments became the biggest memories.
+        </p>
+
+        <div class="polaroids">
+
+            <div class="polaroid">
+                <div class="photo">🌙</div>
+                <p>The first goodnight</p>
+            </div>
+
+            <div class="polaroid">
+                <div class="photo">🌅</div>
+                <p>Your sunrise, my sunset</p>
+            </div>
+
+            <div class="polaroid">
+                <div class="photo">💗</div>
+                <p>Hi, dimadey</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SONG
+========================= -->
+
+<section class="songs" id="songs">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            The Song For You 🎵
+        </h2>
+
+        <p class="section-subtitle">
+            There is a song that your love traced in my life,
+            played on repeat, tattooed in heartbeats.
+        </p>
+
+        <div class="song-card">
+
+            <div class="album">
+                🎵
+            </div>
+
+            <h3>Chi Song</h3>
+
+            <p style="margin-top:10px;opacity:.7">
+                para sayo ang kanta na 'to, alam mo yun, di ba
+            </p>
+
+            <button class="music-btn" onclick="toggleMusic()">
+                ▶ Play Our Song
+            </button>
+
+            <audio id="music" loop>
+                <source src="song.mp3" type="audio/mpeg">
+            </audio>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     LOVE LETTER
+========================= -->
+
+<section class="letter" id="letter">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            You Got A Letter 💌
+        </h2>
+
+        <p class="section-subtitle">
+            Open it. I put some words inside that I really mean.
+        </p>
+
+        <div class="envelope" onclick="openLetter(this)">
+
+            <div class="envelope-body"></div>
+
+            <div class="letter-paper">
+
+                <h3>To My M. Amor,</h3>
+
+                <p>
+                    Every moment with you feels like a dream 
+                    I never want to wake up from.
+                </p>
+
+                <br>
+
+                <p>
+                    You've shown me that love knows no distance, 
+                    no timezone, no boundary.
+                </p>
+
+                <br>
+
+                <p>
+                    You are my sunrise and my sunset, my first 
+                    thought and my last goodnight. I want to spend 
+                    forever making you smile.
+                </p>
+
+                <br>
+
+                <p>
+                    Hu tane prem karu chhu. Te amo.
+                    From India to Mexico, my heart reaches yours.
+                </p>
+
+                <br>
+
+                <p class="script" style="font-size:25px">
+                    With all my love, Jodu ❤️
+                </p>
+
+            </div>
+
+            <div class="flap"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PROPOSAL
+========================= -->
+
+<section class="proposal" id="proposal">
+
+    <div class="proposal-content">
+
+        <div class="ring">
+            💛
+        </div>
+
+        <p>
+            I have one last thing to ask you...
+        </p>
+
+        <h2>
+            Will You Be<br>
+            Mine Forever?
+        </h2>
+
+        <p>
+            Not just today.
+            Not just when everything is perfect.
+            But through the silly days,
+            difficult days, and beautiful days.
+        </p>
+
+        <p>
+            From India to Mexico. Through every timezone.
+            I want us. Always.
+        </p>
+
+        <div class="buttons">
+
+            <button class="yes" onclick="sayYes()">
+                Yes, always 💛
+            </button>
+
+            <button class="no" id="noButton">
+                Maybe... 😳
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FINAL
+========================= -->
+
+<section class="final">
+
+    <div class="container">
+
+        <div class="final-heart">💛</div>
+
+        <h2>Forever Yours</h2>
+
+        <p>
+            From Jodu, with all of my heart.<br>
+            India 🇮🇳 → México 🇲🇽<br>
+            Hu tane prem karu chhu ❤️ Te amo
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SCRIPTS
+========================= -->
+
+<script>
+
+// Loading Screen
+window.addEventListener('load',()=>{
+    setTimeout(()=>{
+        document.getElementById('loader').style.opacity='0';
+        setTimeout(()=>{
+            document.getElementById('loader').style.display='none';
+        },1000);
+    },2500);
+});
+
+// Floating Particles
+setInterval(()=>{
+    const p=document.createElement('div');
+    p.className='particle';
+    p.textContent=['💛','✨','💗','❤️','🌸'][Math.floor(Math.random()*5)];
+    p.style.left=Math.random()*100+'vw';
+    p.style.fontSize=(12+Math.random()*20)+'px';
+    p.style.animationDuration=(5+Math.random()*5)+'s';
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(),10000);
+},800);
+
+// Music Toggle
+function toggleMusic(){
+    const m=document.getElementById('music');
+    const btn=document.querySelector('.music-btn');
+    if(m.paused){
+        m.play();
+        btn.textContent='⏸ Pause';
+    }else{
+        m.pause();
+        btn.textContent='▶ Play Our Song';
+    }
+}
+
+// Open Letter
+function openLetter(el){
+    el.classList.toggle('open');
+}
+
+// Yes Button
+function sayYes(){
+    document.querySelector('.proposal h2').textContent='You Made Me The Happiest! 💛';
+    document.querySelector('.yes').textContent='💛 Forever & Always 💛';
+    
+    // Confetti
+    for(let i=0;i<80;i++){
+        const c=document.createElement('div');
+        c.className='particle';
+        c.textContent=['💛','✨','🎉','💗','❤️','🌸'][Math.floor(Math.random()*6)];
+        c.style.left=Math.random()*100+'vw';
+        c.style.fontSize=(15+Math.random()*25)+'px';
+        c.style.animationDuration=(2+Math.random()*4)+'s';
+        document.body.appendChild(c);
+        setTimeout(()=>c.remove(),6000);
+    }
+}
+
+// No Button - runs away
+const noBtn=document.getElementById('noButton');
+noBtn.addEventListener('mouseover',()=>{
+    noBtn.style.position='relative';
+    noBtn.style.left=(Math.random()*200-100)+'px';
+    noBtn.style.top=(Math.random()*100-50)+'px';
+});
+
+noBtn.addEventListener('touchstart',()=>{
+    noBtn.textContent='You can\'t say no! 😤';
+    setTimeout(()=>{noBtn.textContent='Maybe... 😳'},2000);
+});
+
+</script>
+
 </body>
 </html>
